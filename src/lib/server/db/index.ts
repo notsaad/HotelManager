@@ -1,5 +1,6 @@
 import Database from 'better-sqlite3';
 import { HOTEL_DB_PATH } from '$env/static/private';
+import type { Hotel_Chain } from './types';
 
 const db = new Database(HOTEL_DB_PATH, { verbose: console.log });
 
@@ -10,6 +11,8 @@ addEmployeeTable();
 addCustomerTable();
 addHotelRoomTable();
 addReservationTable();
+
+loadDatabase();
 
 function addHotelChainTable() {
   const sql = `
@@ -116,7 +119,7 @@ function addReservationTable() {
   stmnt.run();
 }
 
-export async function loadDatabases(): Promise<void> {
+export async function loadDatabase(): Promise<void> {
     const insertChainSql = 'INSERT INTO Hotel_Chain (Central_Office_Address, Num_Hotels, Contact_Info) VALUES ($coa, $numHotels, $contactInfo)';
     const insertSupervisorSql = 'INSERT INTO Supervisor (Supervisor_ID, Hotel_Chain, Full_Name, SIN) VALUES ($id, $chain, $name, $sin)';
     const insertHotelSql = 'INSERT INTO Hotel (Hotel_Address, Supervisor_ID, Star_Rating, Num_Rooms, Contact_Info) VALUES ($address, $supervisor, $rating, $numRooms, $contactInfo)';
@@ -179,30 +182,86 @@ export async function loadDatabases(): Promise<void> {
     ];
 
     for (const chain of Hotel_Chains) {
-        insertChainSqlStmnt.run(chain.Central_Office_Address, chain.Num_Hotels, chain.Contact_Info);
+
+        const chainExists = 'select exists(select 1 from Hotel_Chain where Central_Office_Address = ?) as found';
+        const stmnt = db.prepare(chainExists);
+        const exists = stmnt.get(chain.Central_Office_Address).found;
+
+        if (exists) continue;
+
+        insertChainSqlStmnt.run({coa: chain.Central_Office_Address, numHotels: chain.Num_Hotels, contactInfo: chain.Contact_Info});
     }
 
     for (const supervisor of supervisors) {
-        insertSupervisorSqlStmnt.run(supervisor.Supervisor_ID, supervisor.Hotel_Chain, supervisor.Full_Name, supervisor.SIN);
+
+        const supervisorExists = 'select exists(select 1 from Supervisor where Supervisor_ID = ?) as found';
+        const stmnt = db.prepare(supervisorExists);
+        const exists = stmnt.get(supervisor.Supervisor_ID).found;
+
+        if (exists) continue;
+
+        insertSupervisorSqlStmnt.run({ id: supervisor.Supervisor_ID, chain: supervisor.Hotel_Chain, name: supervisor.Full_Name, sin: supervisor.SIN});
     }
 
     for (const hotel of hotels) {
-        insertHotelSqlStmnt.run(hotel.Hotel_Address, hotel.Supervisor_ID, hotel.Star_Rating, hotel.Num_Rooms, hotel.Contact_Info);
+
+        const hotelExists = 'select exists(select 1 from Hotel where Hotel_Address = ?) as found';
+        const stmnt = db.prepare(hotelExists);
+        const exists = stmnt.get(hotel.Hotel_Address).found;
+
+        if (exists) continue;
+
+        insertHotelSqlStmnt.run({ address: hotel.Hotel_Address, supervisor: hotel.Supervisor_ID, rating: hotel.Star_Rating, numRooms: hotel.Num_Rooms, contactInfo: hotel.Contact_Info });
     }
 
     for (const employee of employees) {
-        insertEmployeeSqlStmnt.run(employee.SIN, employee.Hotel_Address, employee.Full_Name, employee.Position);
-    }
 
-    for (const room of hotelRooms) {
-        insertRoomSqlStmnt.run(room.Hotel_Address, room.Room_Number, room.Capacity, room.View_Type, room.Extendability, room.Price, room.Damages, room.Amenities);
+        const employeeExists = 'select exists(select 1 from Employee where SIN = ?) as found';
+        const stmnt = db.prepare(employeeExists);
+        const exists = stmnt.get(employee.SIN).found;
+
+        if (exists) continue;
+
+        insertEmployeeSqlStmnt.run({ sin: employee.SIN, address: employee.Hotel_Address, name: employee.Full_Name, position: employee.Position });
     }
 
     for (const customer of customers) {
-        insertCustomerSqlStmnt.run(customer.Customer_ID, customer.Full_Name, customer.Address, customer.System_Registration_Date);
+
+        const customerExists = 'select exists(select 1 from Customer where Customer_ID = ?) as found';
+        const stmnt = db.prepare(customerExists);
+        const exists = stmnt.get(customer.Customer_ID).found;
+
+        if (exists) continue;
+
+        insertCustomerSqlStmnt.run({ id: customer.Customer_ID, name: customer.Full_Name, address: customer.Address, date: customer.System_Registration_Date });
+    }
+
+    for (const room of hotelRooms) {
+
+        const roomExists = 'select exists(select 1 from Hotel_Room where Hotel_Address = ? and Room_Number = ?) as found';
+        const stmnt = db.prepare(roomExists);
+        const exists = stmnt.get(room.Hotel_Address, room.Room_Number).found;
+
+        if (exists) continue;
+
+        insertRoomSqlStmnt.run({ address: room.Hotel_Address, number: room.Room_Number, capacity: room.Capacity, view: room.View_Type, extend: room.Extendability, price: room.Price, damages: room.Damages, amenities: room.Amenities });
     }
 
     for (const reservation of reservations) {
-        insertReservationSqlStmnt.run(reservation.Customer_ID, reservation.Hotel_Address, reservation.Room_Number, reservation.Check_In_Date, reservation.Check_Out_Date, reservation.Total_Price);
+
+        const reservationExists = 'select exists(select 1 from Reservation where Customer_ID = ? and Hotel_Address = ? and Room_Number = ?) as found';
+        const stmnt = db.prepare(reservationExists);
+        const exists = stmnt.get(reservation.Customer_ID, reservation.Hotel_Address, reservation.Room_Number).found;
+
+        if (exists) continue;
+
+        insertReservationSqlStmnt.run({ customer: reservation.Customer_ID, address: reservation.Hotel_Address, room: reservation.Room_Number, checkIn: reservation.Check_In_Date, checkOut: reservation.Check_Out_Date, price: reservation.Total_Price });
     }
+}
+
+export function getSampleReturn(): HotelChain[] {
+    const sql = 'SELECT * FROM Hotel_Chain';
+    const stmnt = db.prepare(sql);
+    const rows = stmnt.all();
+    return rows as Hotel_Chain[];
 }
