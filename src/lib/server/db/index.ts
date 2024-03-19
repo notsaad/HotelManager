@@ -32,7 +32,7 @@ function addSupervisorTable() {
         Supervisor_ID INTEGER PRIMARY KEY,
         Hotel_Chain TEXT,
         Full_Name TEXT,
-        SIN TEXT,
+        SIN INTEGER,
         FOREIGN KEY (Hotel_Chain) REFERENCES Hotel_Chain(Central_Office_Address) 
     );
     `;
@@ -58,7 +58,7 @@ function addHotelTable() {
 function addEmployeeTable() {
   const sql = `
     CREATE TABLE IF NOT EXISTS Employee (
-        SIN TEXT PRIMARY KEY,
+        SIN INTEGER PRIMARY KEY,
         Hotel_Address TEXT,
         Full_Name TEXT,
         Position TEXT,
@@ -119,17 +119,106 @@ function addReservationTable() {
   stmnt.run();
 }
 
-export async function loadDatabase(): Promise<void> {
+function insertHotelChain(Central_Office_Address: string, numHotels: number, contactInfo: string) {
     const insertChainSql = 'INSERT INTO Hotel_Chain (Central_Office_Address, Num_Hotels, Contact_Info) VALUES ($coa, $numHotels, $contactInfo)';
+    const insertChainSqlStmnt = db.prepare(insertChainSql);
+
+
+    const chainExists = 'select exists(select 1 from Hotel_Chain where Central_Office_Address = ?) as found';
+    const stmnt = db.prepare(chainExists);
+    const exists = stmnt.get(Central_Office_Address).found;
+
+    if (exists) return;
+
+    insertChainSqlStmnt.run({coa: Central_Office_Address, numHotels: numHotels, contactInfo: contactInfo});
+}
+
+function insertSupervisor(Supervisor_ID: number, hotelChain: string, fullName: string, sin: number) {
     const insertSupervisorSql = 'INSERT INTO Supervisor (Supervisor_ID, Hotel_Chain, Full_Name, SIN) VALUES ($id, $chain, $name, $sin)';
+    const insertSupervisorSqlStmnt = db.prepare(insertSupervisorSql);
+
+
+    const supervisorExists = 'select exists(select 1 from Supervisor where Supervisor_ID = ?) as found';
+    const stmnt = db.prepare(supervisorExists);
+    const exists = stmnt.get(Supervisor_ID).found;
+
+    if (exists) return;
+
+    insertSupervisorSqlStmnt.run({ id: Supervisor_ID, chain: hotelChain, name: fullName, sin: sin});
+}
+
+function insertHotel(Hotel_Address: string, Supervisor_ID: number, Star_Rating: number, Num_Rooms: number, Contact_Info: string) {
+    const insertHotelSql = 'INSERT INTO Hotel (Hotel_Address, Supervisor_ID, Star_Rating, Num_Rooms, Contact_Info) VALUES ($address, $supervisor, $rating, $numRooms, $contactInfo)';
+    const insertHotelSqlStmnt = db.prepare(insertHotelSql);
+
+    const hotelExists = 'select exists(select 1 from Hotel where Hotel_Address = ?) as found';
+    const stmnt = db.prepare(hotelExists);
+    const exists = stmnt.get(Hotel_Address).found;
+
+    if (exists) return;
+
+    insertHotelSqlStmnt.run({ address: Hotel_Address, supervisor: Supervisor_ID, rating: Star_Rating, numRooms: Num_Rooms, contactInfo: Contact_Info });
+}
+
+function insertEmployee(SIN: number, Hotel_Address: string, Full_Name: string, Position: string) {
+    const insertEmployeeSql = 'INSERT INTO Employee (SIN, Hotel_Address, Full_Name, Position) VALUES ($sin, $address, $name, $position)';
+    const insertEmployeeSqlStmnt = db.prepare(insertEmployeeSql);
+
+    const employeeExists = 'select exists(select 1 from Employee where SIN = ?) as found';
+    const stmnt = db.prepare(employeeExists);
+    const exists = stmnt.get(SIN).found;
+
+    if (exists) return;
+
+    insertEmployeeSqlStmnt.run({ sin: SIN, address: Hotel_Address, name: Full_Name, position: Position });
+}
+
+function insertHotelRoom(Hotel_Address: string, Room_Number: string, Capacity: number, View_Type: string, Extendability: string, Price: number, Damages: string, Amenities: string) {
+    const insertRoomSql = 'INSERT INTO Hotel_Room (Hotel_Address, Room_Number, Capacity, View_Type, Extendability, Price, Damages, Amenities) VALUES ($address, $number, $capacity, $view, $extend, $price, $damages, $amenities)';
+    const insertRoomSqlStmnt = db.prepare(insertRoomSql);
+
+    const roomExists = 'select exists(select 1 from Hotel_Room where Hotel_Address = ? and Room_Number = ?) as found';
+    const stmnt = db.prepare(roomExists);
+    const exists = stmnt.get(Hotel_Address, Room_Number).found;
+
+    if (exists) return;
+
+    insertRoomSqlStmnt.run({ address: Hotel_Address, number: Room_Number, capacity: Capacity, view: View_Type, extend: Extendability, price: Price, damages: Damages, amenities: Amenities });
+}
+
+function insertCustomer(Customer_ID: number, Full_Name: string, Address: string, System_Registration_Date: string) {
+    const insertCustomerSql = 'INSERT INTO Customer (Customer_ID, Full_Name, Address, System_Registration_Date) VALUES ($id, $name, $address, $date)';
+    const insertCustomerSqlStmnt = db.prepare(insertCustomerSql);
+
+    const customerExists = 'select exists(select 1 from Customer where Customer_ID = ?) as found';
+    const stmnt = db.prepare(customerExists);
+    const exists = stmnt.get(Customer_ID).found;
+
+    if (exists) return;
+
+    insertCustomerSqlStmnt.run({ id: Customer_ID, name: Full_Name, address: Address, date: System_Registration_Date });
+}
+
+function insertReservation(Customer_ID: number, Hotel_Address: string, Room_Number: string, Check_In_Date: string, Check_Out_Date: string, Total_Price: number) {
+    const insertReservationSql = 'INSERT INTO Reservation (Customer_ID, Hotel_Address, Room_Number, Check_In_Date, Check_Out_Date, Total_Price) VALUES ($customer, $address, $room, $checkIn, $checkOut, $price)';
+    const insertReservationSqlStmnt = db.prepare(insertReservationSql);
+
+    const reservationExists = 'select exists(select 1 from Reservation where Customer_ID = ? and Hotel_Address = ? and Room_Number = ?) as found';
+    const stmnt = db.prepare(reservationExists);
+    const exists = stmnt.get(Customer_ID, Hotel_Address, Room_Number).found;
+
+    if (exists) return;
+
+    insertReservationSqlStmnt.run({ customer: Customer_ID, address: Hotel_Address, room: Room_Number, checkIn: Check_In_Date, checkOut: Check_Out_Date, price: Total_Price });
+}
+
+export async function loadDatabase(): Promise<void> {
     const insertHotelSql = 'INSERT INTO Hotel (Hotel_Address, Supervisor_ID, Star_Rating, Num_Rooms, Contact_Info) VALUES ($address, $supervisor, $rating, $numRooms, $contactInfo)';
     const insertEmployeeSql = 'INSERT INTO Employee (SIN, Hotel_Address, Full_Name, Position) VALUES ($sin, $address, $name, $position)';
     const insertCustomerSql = 'INSERT INTO Customer (Customer_ID, Full_Name, Address, System_Registration_Date) VALUES ($id, $name, $address, $date)';
     const insertRoomSql = 'INSERT INTO Hotel_Room (Hotel_Address, Room_Number, Capacity, View_Type, Extendability, Price, Damages, Amenities) VALUES ($address, $number, $capacity, $view, $extend, $price, $damages, $amenities)';
     const insertReservationSql = 'INSERT INTO Reservation (Customer_ID, Hotel_Address, Room_Number, Check_In_Date, Check_Out_Date, Total_Price) VALUES ($customer, $address, $room, $checkIn, $checkOut, $price)';
 
-    const insertChainSqlStmnt = db.prepare(insertChainSql);
-    const insertSupervisorSqlStmnt = db.prepare(insertSupervisorSql);
     const insertHotelSqlStmnt = db.prepare(insertHotelSql);
     const insertEmployeeSqlStmnt = db.prepare(insertEmployeeSql);
     const insertCustomerSqlStmnt = db.prepare(insertCustomerSql);
@@ -145,9 +234,9 @@ export async function loadDatabase(): Promise<void> {
     ];
 
     const supervisors = [
-        {Supervisor_ID: 1, Hotel_Chain: '123 Main St, New York, NY', Full_Name: 'John Smith', SIN: '123456789'},
-        {Supervisor_ID: 2, Hotel_Chain: '123 Main St, New York, NY', Full_Name: 'Jane Doe', SIN: '987654321'},
-        {Supervisor_ID: 3, Hotel_Chain: '55 Elm Blvd, Los Angeles, CA', Full_Name: 'Mark Wilson', SIN: '444888222'},
+        {Supervisor_ID: 1, Hotel_Chain: '123 Main St, New York, NY', Full_Name: 'John Smith', SIN: 123456789},
+        {Supervisor_ID: 2, Hotel_Chain: '123 Main St, New York, NY', Full_Name: 'Jane Doe', SIN: 987654321},
+        {Supervisor_ID: 3, Hotel_Chain: '55 Elm Blvd, Los Angeles, CA', Full_Name: 'Mark Wilson', SIN: 444888222},
         // ... Add more supervisors, ensuring Hotel_Chain values match existing ones
     ];
 
@@ -159,8 +248,8 @@ export async function loadDatabase(): Promise<void> {
     ];
 
     const employees = [
-        {SIN: '555987123', Hotel_Address: '456 Oak Ave, New York, NY', Full_Name: 'Emily Johnson', Position: 'Receptionist'},
-        {SIN: '777333666', Hotel_Address: '987 Sunset Dr, Los Angeles, CA', Full_Name: 'Alex Brown', Position: 'Manager'},
+        {SIN: 555987123, Hotel_Address: '456 Oak Ave, New York, NY', Full_Name: 'Emily Johnson', Position: 'Receptionist'},
+        {SIN: 777333666, Hotel_Address: '987 Sunset Dr, Los Angeles, CA', Full_Name: 'Alex Brown', Position: 'Manager'},
         // ... Add more employees, ensure Hotel_Address exists
     ];
 
@@ -182,80 +271,31 @@ export async function loadDatabase(): Promise<void> {
     ];
 
     for (const chain of Hotel_Chains) {
-
-        const chainExists = 'select exists(select 1 from Hotel_Chain where Central_Office_Address = ?) as found';
-        const stmnt = db.prepare(chainExists);
-        const exists = stmnt.get(chain.Central_Office_Address).found;
-
-        if (exists) continue;
-
-        insertChainSqlStmnt.run({coa: chain.Central_Office_Address, numHotels: chain.Num_Hotels, contactInfo: chain.Contact_Info});
+        insertHotelChain(chain.Central_Office_Address, chain.Num_Hotels, chain.Contact_Info);
     }
 
     for (const supervisor of supervisors) {
-
-        const supervisorExists = 'select exists(select 1 from Supervisor where Supervisor_ID = ?) as found';
-        const stmnt = db.prepare(supervisorExists);
-        const exists = stmnt.get(supervisor.Supervisor_ID).found;
-
-        if (exists) continue;
-
-        insertSupervisorSqlStmnt.run({ id: supervisor.Supervisor_ID, chain: supervisor.Hotel_Chain, name: supervisor.Full_Name, sin: supervisor.SIN});
+        insertSupervisor(supervisor.Supervisor_ID, supervisor.Hotel_Chain, supervisor.Full_Name, supervisor.SIN);
     }
 
     for (const hotel of hotels) {
-
-        const hotelExists = 'select exists(select 1 from Hotel where Hotel_Address = ?) as found';
-        const stmnt = db.prepare(hotelExists);
-        const exists = stmnt.get(hotel.Hotel_Address).found;
-
-        if (exists) continue;
-
-        insertHotelSqlStmnt.run({ address: hotel.Hotel_Address, supervisor: hotel.Supervisor_ID, rating: hotel.Star_Rating, numRooms: hotel.Num_Rooms, contactInfo: hotel.Contact_Info });
+        insertHotel(hotel.Hotel_Address, hotel.Supervisor_ID, hotel.Star_Rating, hotel.Num_Rooms, hotel.Contact_Info);
     }
 
     for (const employee of employees) {
-
-        const employeeExists = 'select exists(select 1 from Employee where SIN = ?) as found';
-        const stmnt = db.prepare(employeeExists);
-        const exists = stmnt.get(employee.SIN).found;
-
-        if (exists) continue;
-
-        insertEmployeeSqlStmnt.run({ sin: employee.SIN, address: employee.Hotel_Address, name: employee.Full_Name, position: employee.Position });
+        insertEmployee(employee.SIN, employee.Hotel_Address, employee.Full_Name, employee.Position);
     }
 
     for (const customer of customers) {
-
-        const customerExists = 'select exists(select 1 from Customer where Customer_ID = ?) as found';
-        const stmnt = db.prepare(customerExists);
-        const exists = stmnt.get(customer.Customer_ID).found;
-
-        if (exists) continue;
-
-        insertCustomerSqlStmnt.run({ id: customer.Customer_ID, name: customer.Full_Name, address: customer.Address, date: customer.System_Registration_Date });
+        insertCustomer(customer.Customer_ID, customer.Full_Name, customer.Address, customer.System_Registration_Date);
     }
 
     for (const room of hotelRooms) {
-
-        const roomExists = 'select exists(select 1 from Hotel_Room where Hotel_Address = ? and Room_Number = ?) as found';
-        const stmnt = db.prepare(roomExists);
-        const exists = stmnt.get(room.Hotel_Address, room.Room_Number).found;
-
-        if (exists) continue;
-
-        insertRoomSqlStmnt.run({ address: room.Hotel_Address, number: room.Room_Number, capacity: room.Capacity, view: room.View_Type, extend: room.Extendability, price: room.Price, damages: room.Damages, amenities: room.Amenities });
+        insertHotelRoom(room.Hotel_Address, room.Room_Number, room.Capacity, room.View_Type, room.Extendability, room.Price, room.Damages, room.Amenities);
     }
 
     for (const reservation of reservations) {
-
-        const reservationExists = 'select exists(select 1 from Reservation where Customer_ID = ? and Hotel_Address = ? and Room_Number = ?) as found';
-        const stmnt = db.prepare(reservationExists);
-        const exists = stmnt.get(reservation.Customer_ID, reservation.Hotel_Address, reservation.Room_Number).found;
-
-        if (exists) continue;
-
-        insertReservationSqlStmnt.run({ customer: reservation.Customer_ID, address: reservation.Hotel_Address, room: reservation.Room_Number, checkIn: reservation.Check_In_Date, checkOut: reservation.Check_Out_Date, price: reservation.Total_Price });
+        insertReservation(reservation.Customer_ID, reservation.Hotel_Address, reservation.Room_Number, reservation.Check_In_Date, reservation.Check_Out_Date, reservation.Total_Price);
     }
 }
 
