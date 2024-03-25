@@ -6,7 +6,6 @@
 <body>
     <div class="main">
         <h1>Employee Login</h1>
-        <h3>Enter your login credentials</h3>
         <form action="">
             <label for="first">
                   Username:
@@ -23,8 +22,13 @@
                    id="password"
                    name="password"
                    placeholder="Enter your Password" required>
-            <div class="submitButton">
-                <a href="/">Submit</a>
+            <div class="buttonsDiv">
+                <div class="backButton">
+                    <a href="/">Back</a>
+                </div>
+                <div class="submitButton">
+                    <a href="/">Submit</a>
+                </div>
             </div>
         </form>
     </div>
@@ -60,26 +64,29 @@ body {
   border-radius: 4px;
 }
 
-.submitButton {
-  text-align: center;       /* Center the submit button/link */
-}
+    .buttonsDiv {
+    display: flex;           /* Use flexbox for layout */   
+    justify-content: space-around; /* Distribute space around buttons */
+    margin-top: 20px;         /* Add space above the buttons */
+    }
 
-.submitButton a {
-  background-color: #4CAF50; /* Example button color */
-  color: white;
-  padding: 12px 20px;
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
-  border-radius: 5px;
-}
-
-.submitButton a:hover {
-        background-color: #347637;
+    .buttonsDiv a:hover {
+        background-color: black;
         color: white;
         cursor: pointer;
         transform: scale(0.975);
         box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.25);
+    }
+
+    .backButton a, .submitButton a{  /* Style the button containers */
+    flex: 1;                  /* Allow buttons to grow if needed */
+    margin: 0 5px;            /* Add a small margin between buttons */
+    background-color: white;
+    color: black;
+    padding: 10px 15px;       /* Add some padding */
+    border: 1px solid black;  /* Add a border */
+    border-radius: 5px;       /* Slightly rounded corners */
+    text-decoration: none;    /* Remove default underline */
     }
 
 </style>
