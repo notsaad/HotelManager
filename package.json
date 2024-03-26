@@ -31,6 +31,8 @@
 	},
 	"type": "module",
 	"dependencies": {
-		"better-sqlite3": "^9.4.3"
+		"better-sqlite3": "^9.4.3",
+		"flatpickr": "^4.6.13",
+		"svelte-flatpickr": "^3.3.4"
 	}
 }
