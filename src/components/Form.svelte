@@ -62,7 +62,7 @@
           </div>
       </div>
       <div class="submitDiv">
-        <a href="/" class="submit-btn" on:click|preventDefault={handleSubmit}>Submit</a>
+        <a href="/" class="submit-btn" >Submit</a>
       </div>
   </form>
   
