@@ -1,6 +1,6 @@
 import Database from 'better-sqlite3';
 import { HOTEL_DB_PATH } from '$env/static/private';
-import type { Hotel, HotelChain, Supervisor, Employee, HotelRoom, Customer, Reservation } from './types';
+import type { Hotel, HotelChain, Employee, HotelRoom, Customer, Reservation } from './types';
 import { Hotel_Chains, Hotels, Employees, Hotel_Rooms } from './sampleData';
 
 const db = new Database(HOTEL_DB_PATH, { verbose: console.log });

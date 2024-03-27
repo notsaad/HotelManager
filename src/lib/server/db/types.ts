@@ -22,11 +22,6 @@ export type Employee = {
     position: string;
 }
 
-export type Supervisor = {
-    supervisorID: number;
-    hotelAddress: string;
-}
-
 export type Customer = {
     customerID: number;
     fullName: string;
