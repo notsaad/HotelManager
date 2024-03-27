@@ -1,4 +1,10 @@
 <script>
+// @ts-nocheck
+
+    //import { navigate } from 'sveltekit';
+    //import { goto } from 'svelte/navigation';
+    //import { goto } from '@sveltejs/navigation';
+
     import {
       cardNumber,
       cardHolder,
@@ -18,7 +24,7 @@
         $selectedYear,
         $ccv
       );
-      alert($submitInfo);
+      console.log($submitInfo);
     };
   </script>
   
@@ -55,11 +61,26 @@
               <input bind:value={$ccv} type="text" maxlength="4" class="ccv-input" on:focus={()=>{$ccv = ""}}>
           </div>
       </div>
+      <div class="submitDiv">
+        <a href="/" class="submit-btn" on:click|preventDefault={handleSubmit}>Submit</a>
+      </div>
   </form>
   
   <style>
       @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600&display=swap");
-  
+    .submitDiv a {
+      display: block;         /* Make it a block element for width/margin control */
+      width: 200px;           /* Adjust width as needed */
+      margin: 20px auto;      /* Top/bottom margin, auto for horizontal centering */
+      padding: 10px 20px;     /* Button padding */
+      background-color: #4CAF50;  /* Example button color */
+      color: white;           /* White text  */
+      border: none;           /* Remove default link border */
+      border-radius: 5px;     /* Slightly rounded corners */
+      text-align: center;     /* Center the text */
+      text-decoration: none;  /* Remove underline */
+      cursor: pointer;        /* Indicate it's clickable */
+      }
       * {
         font-family: "Poppins", sans-serif;
         margin: 0;
