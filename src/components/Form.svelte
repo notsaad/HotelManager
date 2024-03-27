@@ -62,7 +62,7 @@
           </div>
       </div>
       <div class="submitDiv">
-        <a href="/" class="submit-btn" >Submit</a>
+        <a href="/customer/dates/confirm/final" class="submit-btn" >Submit</a>
       </div>
   </form>
   

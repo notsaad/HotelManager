@@ -1,12 +1,26 @@
-
 <script>
-	import Button from "../../components/Button.svelte";
+    // @ts-ignore
+    function handleSubmit(event) {
+  event.preventDefault(); 
+
+  const usernameInput = document.getElementById("first");
+  const passwordInput = document.getElementById("password");
+
+  // @ts-ignore
+  if (usernameInput.value === "admin" && passwordInput.value === "password") {
+    // Login credentials are correct, redirect to the next page
+    window.location.href = "/employee/checkin"; 
+  } else {
+    // Handle incorrect credentials (e.g., display an error message)
+    alert("Invalid Username or Password");
+  }
+    }
 </script>
 
 <body>
     <div class="main">
         <h1>Employee Login</h1>
-        <form action="">
+        <form action="" id="loginForm">
             <label for="first">
                   Username:
               </label>
@@ -23,11 +37,8 @@
                    name="password"
                    placeholder="Enter your Password" required>
             <div class="buttonsDiv">
-                <div class="backButton">
-                    <a href="/">Back</a>
-                </div>
                 <div class="submitButton">
-                    <a href="/">Submit</a>
+                    <button type="button" on:click={handleSubmit}>Submit</button>
                 </div>
             </div>
         </form>
@@ -70,15 +81,7 @@ body {
     margin-top: 20px;         /* Add space above the buttons */
     }
 
-    .buttonsDiv a:hover {
-        background-color: black;
-        color: white;
-        cursor: pointer;
-        transform: scale(0.975);
-        box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.25);
-    }
-
-    .backButton a, .submitButton a{  /* Style the button containers */
+    .submitButton button{  /* Style the button containers */
     flex: 1;                  /* Allow buttons to grow if needed */
     margin: 0 5px;            /* Add a small margin between buttons */
     background-color: white;
@@ -87,6 +90,14 @@ body {
     border: 1px solid black;  /* Add a border */
     border-radius: 5px;       /* Slightly rounded corners */
     text-decoration: none;    /* Remove default underline */
+    }
+
+    button:hover {
+        background-color: black;
+        color: white;
+        cursor: pointer;
+        transform: scale(0.975);
+        box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.25);
     }
 
 </style>
