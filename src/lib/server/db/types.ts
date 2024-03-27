@@ -1,37 +1,45 @@
 export type HotelChain = {
     centralOfficeAddress: string;
+    chainName: string;
     numHotels: number;
-    contactInfo: string;
-}
-
-export type Supervisor = {
-    supervisorID: number;
-    hotelChain: string;
-    fullName: string;
-    sin: string;
+    emailAddress: string;
+    phoneNumber: string;
 }
 
 export type Hotel = {
     hotelAddress: string;
-    supervisorID: number;
+    centralOfficeAddress: string;
     starRating: number;
     numRooms: number;
     contactInfo: string;
+}
+
+export type Employee = {
+    employeeID: number;
+    supervisorID?: number;
+    hotelAddress: string;
+    fullName: string;
+    position: string;
+}
+
+export type Supervisor = {
+    supervisorID: number;
+    hotelAddress: string;
 }
 
 export type Customer = {
     customerID: number;
     fullName: string;
     address: string;
-    systemRegistrationDate: string;
+    systemRegistrationDate: string; // Maybe change from type string to type Date
 }
 
 export type HotelRoom = {
     hotelAddress: string;
-    roomNumber: string;
+    roomNumber: number;
     capacity: number;
     viewType: string;
-    extendability: string;
+    extendability: boolean;
     price: number;
     damages: string;
     amenities: string;
@@ -40,8 +48,8 @@ export type HotelRoom = {
 export type Reservation = {
     customerID: number;
     hotelAddress: string;
-    roomNumber: string;
-    checkInDate: string;
-    checkOutDate: string;
+    roomNumber: number;
+    checkInDate: string; // Maybe change from type string to type Date
+    checkOutDate: string; // Maybe change from type string to type Date
     totalPrice: number;
 }
