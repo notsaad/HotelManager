@@ -1,7 +1,7 @@
 import Database from 'better-sqlite3';
 import { HOTEL_DB_PATH } from '$env/static/private';
 import type { Hotel, HotelChain, Employee, HotelRoom, Customer, Reservation } from './types';
-import { Hotel_Chains, Hotels, Employees, Hotel_Rooms } from './sampleData';
+import { Hotel_Chains, Hotels, Employees, Hotel_Rooms, Customers, Reservations } from './sampleData';
 
 const db = new Database(HOTEL_DB_PATH, { verbose: console.log });
 
@@ -101,7 +101,7 @@ function addReservationTable() {
         check_in_date DATE,
         check_out_date DATE,
         total_price DECIMAL,
-        PRIMARY KEY (customer_id, hotel_address, room_number), 
+        PRIMARY KEY (customer_id, hotel_address, room_number, check_in_date), 
         FOREIGN KEY (customer_id) REFERENCES Customers(customer_id),
         FOREIGN KEY (hotel_address, room_number) REFERENCES Hotel_Rooms(hotel_address, room_number) 
     );
@@ -190,9 +190,9 @@ function insertReservation(reservation: Reservation) {
     const insertReservationSql = 'INSERT INTO Reservations (customer_id, hotel_address, room_number, check_in_date, check_out_date, total_price) VALUES ($customer, $address, $room, $checkIn, $checkOut, $price)';
     const insertReservationSqlStmnt = db.prepare(insertReservationSql);
 
-    const reservationExists = 'select exists(select 1 from Reservations where customer_id = ? and hotel_address = ? and room_number = ?) as found';
+    const reservationExists = 'select exists(select 1 from Reservations where customer_id = ? and hotel_address = ? and room_number = ? and check_in_date = ?) as found';
     const stmnt = db.prepare(reservationExists);
-    const exists = stmnt.get(reservation.customerID, reservation.hotelAddress, reservation.roomNumber).found;
+    const exists = stmnt.get(reservation.customerID, reservation.hotelAddress, reservation.roomNumber, reservation.checkInDate).found;
 
     if (exists) {
         return
@@ -218,6 +218,14 @@ export async function loadDatabase(): Promise<void> {
         insertHotelRoom(room);
     });
 
+    Customers.forEach((customer) => {
+        insertCustomer(customer);
+    });
+
+    Reservations.forEach((reservation) => {
+        insertReservation(reservation);
+    });
+
     // for (const customer of customers) {
     //     insertCustomer(customer);
     // }
@@ -231,9 +239,30 @@ export async function loadDatabase(): Promise<void> {
     // }
 }
 
-export function getSampleReturn(): HotelChain[] {
-    const sql = 'SELECT * FROM Hotel_Chains';
+export function getHotelChains(): HotelChain[] {
+    const sql = 'SELECT chain_name FROM Hotel_Chains';
     const stmnt = db.prepare(sql);
     const rows = stmnt.all();
     return rows as HotelChain[];
+}
+
+export function getAllHotelRooms(chainName: string = "") {
+    if (chainName === "") {
+        const sql = `SELECT chain_name, Hotels.hotel_address, star_rating, room_number, capacity, view_type, extendability, price, amenities FROM Hotel_Chains
+        FULL JOIN Hotels ON Hotel_Chains.central_office_address = Hotels.central_office_address
+        INNER JOIN Hotel_Rooms ON Hotels.hotel_address = Hotel_Rooms.hotel_address;
+        `;
+        const stmnt = db.prepare(sql);
+        const rows = stmnt.all();
+        return rows;
+    }
+
+    let sql = `SELECT hc.chain_name, h.hotel_address, h.star_rating, hr.room_number, hr.capacity, hr.view_type, hr.extendability, hr.price, hr.amenities 
+    FROM Hotel_Chains hc
+    FULL JOIN Hotels h ON hc.central_office_address = h.central_office_address
+    INNER JOIN Hotel_Rooms hr ON h.hotel_address = hr.hotel_address
+    WHERE hc.chain_name = ?`;
+    const stmnt = db.prepare(sql);
+    const rows = stmnt.all(chainName);
+    return rows;
 }

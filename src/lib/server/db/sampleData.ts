@@ -1,4 +1,4 @@
-import type { Employee, Hotel, HotelChain, HotelRoom } from "./types";
+import type { Customer, Employee, Hotel, HotelChain, HotelRoom, Reservation } from "./types";
 
 export const Hotel_Chains: HotelChain[] = [
     { centralOfficeAddress: "50 York Street, Toronto, ON, Canada", chainName: "Hamlet Hotels", numHotels: 4, emailAddress: "help@hamlethotels.ca", phoneNumber: "416-123-4567" },
@@ -59,8 +59,6 @@ export const Hotels: Hotel[] = [
     { hotelAddress: "1000 Rue de la Gauchetière, Montreal, QC, Canada", centralOfficeAddress: "300 Bay Street, Suite 1000,  Montreal, QC, Canada", starRating: 4, numRooms: 125, contactInfo: "gauchetiere@lefleuron.ca" },
     { hotelAddress: "1 Rue Frontenac, Quebec City, QC, Canada", centralOfficeAddress: "300 Bay Street, Suite 1000,  Montreal, QC, Canada", starRating: 4, numRooms: 140, contactInfo: "frontenac@lefleuron.ca" },
 ]
-
-
 
 export const Hotel_Rooms: HotelRoom[] = [
     // Hamlet Hotels
@@ -429,3 +427,13 @@ export const Employees: Employee[] = [
 
     // Add more later I guess
 ]
+
+export const Customers: Customer[] = [
+    {customerID: 1, fullName: "John Doe", address: "someaddress", systemRegistrationDate: "2021-07-01"},
+    {customerID: 2, fullName: "John Doe", address: "someaddress", systemRegistrationDate: "2021-07-01"}
+];
+
+export const Reservations: Reservation[] = [
+    {customerID: 1, hotelAddress: "1234 Queen Street, Toronto, ON, Canada", roomNumber: 101, checkInDate: "2021-07-01", checkOutDate: "2021-07-05", totalPrice: 500},
+    {customerID: 1, hotelAddress: "1234 Queen Street, Toronto, ON, Canada", roomNumber: 101, checkInDate: "2022-08-01", checkOutDate: "2022-07-05", totalPrice: 500},
+];
