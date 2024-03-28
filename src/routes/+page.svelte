@@ -32,6 +32,7 @@
     justify-content: center; /* Center items along the cross axis */
     min-height: 100vh;       /* Ensure body takes up full viewport height */
     margin: 0;               /* Reset default margins */
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
     }
 
     .loginDiv {

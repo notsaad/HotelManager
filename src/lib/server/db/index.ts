@@ -1,9 +1,9 @@
 import Database from 'better-sqlite3';
 import { HOTEL_DB_PATH } from '$env/static/private';
-import type { Hotel, HotelChain, Employee, HotelRoom, Customer, Reservation } from './types';
+import type { Hotel, HotelChain, Employee, HotelRoom, Customer, Reservation, hotelRoomQueryOptions } from './types';
 import { Hotel_Chains, Hotels, Employees, Hotel_Rooms, Customers, Reservations } from './sampleData';
 
-const db = new Database(HOTEL_DB_PATH, { verbose: console.log });
+const db = new Database(HOTEL_DB_PATH); // { verbose: console.log });
 
 addHotelChainTable();
 addHotelTable();
@@ -33,6 +33,7 @@ function addHotelTable() {
       CREATE TABLE IF NOT EXISTS Hotels (
           hotel_address TEXT PRIMARY KEY,
           central_office_address TEXT,
+          area TEXT,
           star_rating INTEGER,
           num_rooms INTEGER,
           contact_info TEXT,
@@ -127,7 +128,7 @@ function insertHotelChain(chain: HotelChain) {
 }
 
 function insertHotel(hotel: Hotel) {
-    const insertHotelSql = 'INSERT INTO Hotels (hotel_address, central_office_address, star_rating, num_rooms, contact_info) VALUES ($address, $coa, $rating, $numRooms, $contactInfo)';
+    const insertHotelSql = 'INSERT INTO Hotels (hotel_address, central_office_address, area, star_rating, num_rooms, contact_info) VALUES ($address, $coa, $area, $rating, $numRooms, $contactInfo)';
     const insertHotelSqlStmnt = db.prepare(insertHotelSql);
 
     const hotelExists = 'select exists(select 1 from Hotels where hotel_address = ?) as found';
@@ -138,7 +139,7 @@ function insertHotel(hotel: Hotel) {
         return
     };
 
-    insertHotelSqlStmnt.run({ address: hotel.hotelAddress, coa: hotel.centralOfficeAddress, rating: hotel.starRating, numRooms: hotel.numRooms, contactInfo: hotel.contactInfo });
+    insertHotelSqlStmnt.run({ address: hotel.hotelAddress, coa: hotel.centralOfficeAddress, area: hotel.area, rating: hotel.starRating, numRooms: hotel.numRooms, contactInfo: hotel.contactInfo });
 }
 
 function insertEmployee(employee: Employee) {
@@ -201,7 +202,10 @@ function insertReservation(reservation: Reservation) {
     insertReservationSqlStmnt.run({ customer: reservation.customerID, address: reservation.hotelAddress, room: reservation.roomNumber, checkIn: reservation.checkInDate, checkOut: reservation.checkOutDate, price: reservation.totalPrice });
 }
 
-export async function loadDatabase(): Promise<void> {
+export async function loadDatabase(){
+
+    // check if database exists before loading
+
     Hotel_Chains.forEach((chain) => {
         insertHotelChain(chain);
     });
@@ -246,23 +250,48 @@ export function getHotelChains(): HotelChain[] {
     return rows as HotelChain[];
 }
 
-export function getAllHotelRooms(chainName: string = "") {
-    if (chainName === "") {
-        const sql = `SELECT chain_name, Hotels.hotel_address, star_rating, room_number, capacity, view_type, extendability, price, amenities FROM Hotel_Chains
-        FULL JOIN Hotels ON Hotel_Chains.central_office_address = Hotels.central_office_address
-        INNER JOIN Hotel_Rooms ON Hotels.hotel_address = Hotel_Rooms.hotel_address;
-        `;
+export function getAllHotelRooms(hotelRoomQueryOptions: hotelRoomQueryOptions) {
+    let sql = `SELECT hc.chain_name, h.hotel_address, h.area, h.star_rating, hr.room_number, hr.capacity, hr.view_type, hr.extendability, hr.price, hr.amenities 
+                FROM Hotel_Chains hc
+                FULL JOIN Hotels h ON hc.central_office_address = h.central_office_address
+                INNER JOIN Hotel_Rooms hr ON h.hotel_address = hr.hotel_address`;
+
+    // Query building
+    const whereClauses:string[] = [];
+    let parameters:string[] = [];
+
+
+    if (!hotelRoomQueryOptions) {
+        sql += " LIMIT 18 OFFSET 0;";
         const stmnt = db.prepare(sql);
-        const rows = stmnt.all();
+        const rows = stmnt.all(...parameters);
         return rows;
     }
 
-    let sql = `SELECT hc.chain_name, h.hotel_address, h.star_rating, hr.room_number, hr.capacity, hr.view_type, hr.extendability, hr.price, hr.amenities 
-    FROM Hotel_Chains hc
-    FULL JOIN Hotels h ON hc.central_office_address = h.central_office_address
-    INNER JOIN Hotel_Rooms hr ON h.hotel_address = hr.hotel_address
-    WHERE hc.chain_name = ?`;
+    if (hotelRoomQueryOptions.chainNames.length > 0 && hotelRoomQueryOptions.chainNames[0] !== "") { 
+        const placeholders = hotelRoomQueryOptions.chainNames.map(() => "?").join(",");
+        whereClauses.push(`hc.chain_name IN (${placeholders})`); 
+        parameters = parameters.concat(hotelRoomQueryOptions.chainNames);
+    }
+
+    if (hotelRoomQueryOptions.area) {
+        whereClauses.push("h.area LIKE ?");
+        parameters.push('%' + hotelRoomQueryOptions.area + '%');
+    }
+
+    if (hotelRoomQueryOptions.starRating > 0) {
+        whereClauses.push("h.star_rating >= ?");
+        parameters.push(hotelRoomQueryOptions.starRating.toString()); 
+    }
+
+    if (whereClauses.length > 0) {
+        sql += " WHERE " + whereClauses.join(" AND ");
+    }
+
+    sql += " LIMIT 18 OFFSET ?;";
+    parameters.push(hotelRoomQueryOptions.offset.toString());
+
     const stmnt = db.prepare(sql);
-    const rows = stmnt.all(chainName);
+    const rows = stmnt.all(...parameters);
     return rows;
 }

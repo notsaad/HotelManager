@@ -9,6 +9,7 @@ export type HotelChain = {
 export type Hotel = {
     hotelAddress: string;
     centralOfficeAddress: string;
+    area: string;
     starRating: number;
     numRooms: number;
     contactInfo: string;
@@ -48,3 +49,10 @@ export type Reservation = {
     checkOutDate: string; // Maybe change from type string to type Date
     totalPrice: number;
 }
+
+export type hotelRoomQueryOptions = {
+    chainNames: string[], 
+    area:string, 
+    starRating:number, 
+    offset:number
+};

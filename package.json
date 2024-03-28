@@ -33,6 +33,7 @@
 	},
 	"type": "module",
 	"dependencies": {
+		"@fortawesome/fontawesome-free": "^6.5.1",
 		"better-sqlite3": "^9.4.3",
 		"date-picker-svelte": "^2.11.0",
 		"flatpickr": "^4.6.13",
