@@ -56,4 +56,5 @@ export type hotelRoomQueryOptions = {
     starRating:number,
     maxPrice:number,
     minPrice:number,
+    minCapacity:number
 };

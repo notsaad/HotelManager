@@ -1,7 +1,7 @@
 <script lang="ts">
     import type { PageData } from "./$types";
     import "@fortawesome/fontawesome-free"
-	import HotelCard from "../../../components/hotel_card.svelte";
+	import HotelCard from "../../../components/Hotel.svelte";
     
     export let data: PageData;
     let selectedChain = ""
@@ -10,13 +10,14 @@
     let starCount = 0;
     let minPrice: number;
     let maxPrice: number;
+    let minCapacity: number;
     
     let hotelRooms = data.hotelRooms;
     let hotels;
     changeGrid();
     
     async function fetchHotels() {
-        let res = await fetch(`/api/filterChains?chainName=${selectedChain.replace(" ", "%20")}&area=${area}&starRating=${starCount}&minPrice=${minPrice}&maxPrice=${maxPrice}`)
+        let res = await fetch(`/api/filterChains?chainName=${selectedChain.replace(" ", "%20")}&area=${area}&starRating=${starCount}&minPrice=${minPrice}&maxPrice=${maxPrice}&minCapacity=${minCapacity}`)
         let data = await res.json();
         hotelRooms = data;
         offset = 0;

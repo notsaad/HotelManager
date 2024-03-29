@@ -17,7 +17,7 @@
     })
 
     function bookHotel() {
-        let url = window.location.href + `/${hotelAddress}&${minPrice}&${maxPrice}&${minCapacity}`; // also pass dates?    
+        let url = window.location.href + `/${hotelAddress}/minPrice=${minPrice}&maxPrice=${maxPrice}&minCapacity=${minCapacity}`; // also pass dates
         window.location.href = url;
     }
 </script>
@@ -25,8 +25,8 @@
 <div class="hotel-card" style='background-image: url({hotelUrl});'>
     <div class="hotel-container">
         <div class="hotel-info">
-            <h2>{hotelChain}</h2>
-            <h4 class="subtitle">{hotelArea}</h4>
+            <h2>{hotelArea}</h2>
+            <h4 class="subtitle">{hotelChain}</h4>
             <div class="stars">
                 {#each Array(numStars) as _, i}
                     <i class="fa-solid fa-star star" style="color: #FFD43B;"></i>
@@ -47,7 +47,7 @@
     }
 
     .subtitle {
-        margin-top: 0;
+        margin: 0 0 10px 0;
         color: lightgray;
     }
 
@@ -82,7 +82,7 @@
         display: flex;
         align-items: center;
         width: 100%;
-        padding: 20px;
+        padding: 5px 20px;
         margin: auto;
     }
 
@@ -107,6 +107,7 @@
         position: relative;
         display: inline;
         margin-left: auto;
+        margin-bottom: 0;
         font-weight: bold;
         font-size: 20px;
     }

@@ -14,6 +14,7 @@ export const GET = (({ url }) => {
         starRating: parseInt(url.searchParams.get("starRating")?.toString() ?? "0"),
         minPrice: Math.abs(parseInt(url.searchParams.get("minPrice")?.toString() ?? "0")),
         maxPrice: Math.abs(parseInt(url.searchParams.get("maxPrice")?.toString() ?? "0")),
+        minCapacity: Math.abs(parseInt(url.searchParams.get("minCapacity")?.toString() ?? "0")),
     }
     
     const hotelRooms = getAllHotelRooms(query) ?? [];

@@ -295,6 +295,11 @@ export function getAllHotelRooms(hotelRoomQueryOptions: hotelRoomQueryOptions) {
         parameters.push(hotelRoomQueryOptions.minPrice.toString());
     }
 
+    if (hotelRoomQueryOptions.minCapacity > 0) {
+        whereClauses.push("hr.capacity >= ?");
+        parameters.push(hotelRoomQueryOptions.minCapacity.toString());
+    }
+
     if (whereClauses.length > 0) {
         sql += " WHERE " + whereClauses.join(" AND ");
     }
@@ -306,5 +311,12 @@ export function getAllHotelRooms(hotelRoomQueryOptions: hotelRoomQueryOptions) {
 
     const stmnt = db.prepare(sql);
     const rows = stmnt.all(...parameters);
+    return rows;
+}
+
+export function getHotelRooms(hotelAddress: string, min_price: number, max_price: number, min_capacity: number) {
+    const sql = `SELECT * FROM Hotel_Rooms WHERE hotel_address = ? AND price >= ? AND price <= ? AND capacity >= ?`;
+    const stmnt = db.prepare(sql);
+    const rows = stmnt.all(hotelAddress, min_price, max_price, min_capacity);
     return rows;
 }
