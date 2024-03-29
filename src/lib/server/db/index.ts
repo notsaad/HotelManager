@@ -250,54 +250,8 @@ export function getHotelChains(): HotelChain[] {
     return rows as HotelChain[];
 }
 
-export function getAllHotels(hotelQueryOptions: hotelQueryOptions) {
-    let sql = `SELECT DISTINCT hc.chain_name, h.hotel_address, h.area, h.star_rating, hr.capacity, hr.price 
-    FROM Hotel_Chains hc
-    FULL JOIN Hotels h ON hc.central_office_address = h.central_office_address
-    INNER JOIN Hotel_Rooms hr ON h.hotel_address = hr.hotel_address`;
-
-    // Query building
-    const whereClauses:string[] = [];
-    let parameters:string[] = [];
-
-
-    if (!hotelQueryOptions) {
-    sql += " LIMIT 24 OFFSET 0;";
-    const stmnt = db.prepare(sql);
-    const rows = stmnt.all(...parameters);
-    return rows;
-    }
-
-    if (hotelQueryOptions.chainNames.length > 0 && hotelQueryOptions.chainNames[0] !== "") { 
-    const placeholders = hotelQueryOptions.chainNames.map(() => "?").join(",");
-    whereClauses.push(`hc.chain_name IN (${placeholders})`); 
-    parameters = parameters.concat(hotelQueryOptions.chainNames);
-    }
-
-    if (hotelQueryOptions.area) {
-    whereClauses.push("h.area LIKE ?");
-    parameters.push('%' + hotelQueryOptions.area + '%');
-    }
-
-    if (hotelQueryOptions.starRating > 0) {
-    whereClauses.push("h.star_rating >= ?");
-    parameters.push(hotelQueryOptions.starRating.toString()); 
-    }
-
-    if (whereClauses.length > 0) {
-    sql += " WHERE " + whereClauses.join(" AND ");
-    }
-
-    sql += " LIMIT 24 OFFSET ?;";
-    parameters.push(hotelQueryOptions.offset.toString());
-
-    const stmnt = db.prepare(sql);
-    const rows = stmnt.all(...parameters);
-    return rows;
-}
-
 export function getAllHotelRooms(hotelRoomQueryOptions: hotelRoomQueryOptions) {
-    let sql = `SELECT hc.chain_name, h.hotel_address, h.area, h.star_rating, hr.room_number, hr.capacity, hr.view_type, hr.extendability, hr.price, hr.amenities 
+    let sql = `SELECT hc.chain_name, h.hotel_address, h.area, h.star_rating, hr.room_number, hr.capacity, hr.view_type, hr.extendability, hr.price
                 FROM Hotel_Chains hc
                 FULL JOIN Hotels h ON hc.central_office_address = h.central_office_address
                 INNER JOIN Hotel_Rooms hr ON h.hotel_address = hr.hotel_address`;
@@ -308,7 +262,8 @@ export function getAllHotelRooms(hotelRoomQueryOptions: hotelRoomQueryOptions) {
 
 
     if (!hotelRoomQueryOptions) {
-        sql += " LIMIT 24 OFFSET 0;";
+        /** removal explained below */
+        // sql += " LIMIT 24 OFFSET 0;";
         const stmnt = db.prepare(sql);
         const rows = stmnt.all(...parameters);
         return rows;
@@ -330,12 +285,24 @@ export function getAllHotelRooms(hotelRoomQueryOptions: hotelRoomQueryOptions) {
         parameters.push(hotelRoomQueryOptions.starRating.toString()); 
     }
 
+    if (hotelRoomQueryOptions.maxPrice > 0) {
+        whereClauses.push("hr.price <= ?");
+        parameters.push(hotelRoomQueryOptions.maxPrice.toString());
+    }
+
+    if (hotelRoomQueryOptions.minPrice > 0) {
+        whereClauses.push("hr.price >= ?");
+        parameters.push(hotelRoomQueryOptions.minPrice.toString());
+    }
+
     if (whereClauses.length > 0) {
         sql += " WHERE " + whereClauses.join(" AND ");
     }
 
-    sql += " LIMIT 24 OFFSET ?;";
-    parameters.push(hotelRoomQueryOptions.offset.toString());
+    /* Not a good idea in this case, aggregation of rooms into hotel locations is done client side
+     * So the client side should show a reasonable number of hotels at a time */
+    // sql += " LIMIT 24 OFFSET ?;";
+    // parameters.push(hotelRoomQueryOptions.offset.toString());
 
     const stmnt = db.prepare(sql);
     const rows = stmnt.all(...parameters);

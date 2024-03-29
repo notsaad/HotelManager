@@ -1,11 +1,14 @@
 <script lang="ts">
     import '@fortawesome/fontawesome-free/css/all.css';
 	import { afterUpdate } from 'svelte';
+	import { Route } from 'svelte-routing';
     export let numStars: number;
-    export let hotelAddress: string;
     export let hotelChain: string;
+    export let hotelAddress: string;
     export let hotelArea: string;
-    export let price: number;
+    export let minPrice: number;
+    export let maxPrice: number;
+    export let minCapacity: number;
 
     let hotelUrl = `/hotel${Math.floor(Math.random()*18)}.jpg`.toString();
 
@@ -14,7 +17,8 @@
     })
 
     function bookHotel() {
-        // POST reservation or open date selector ? What should the order be
+        let url = window.location.href + `/${hotelAddress}&${minPrice}&${maxPrice}&${minCapacity}`; // also pass dates?    
+        window.location.href = url;
     }
 </script>
 
@@ -32,7 +36,7 @@
                 {/each}
             </div>
         </div>
-        <button on:click={bookHotel}>${price}</button>
+        <button on:click={bookHotel}>${minPrice}-{maxPrice}</button>
     </div>
 </div>
 
@@ -93,7 +97,7 @@
     }
 
     button {
-        padding: 8px 15px;
+        padding: 12px 18px;
         border-radius: 5px;
         background-color: #007bff;
         color: white;
@@ -101,9 +105,10 @@
         cursor: pointer;
         z-index: 2;
         position: relative;
-        height: 2.2rem;
         display: inline;
         margin-left: auto;
+        font-weight: bold;
+        font-size: 20px;
     }
 
     button:hover {

@@ -50,16 +50,10 @@ export type Reservation = {
     totalPrice: number;
 }
 
-export type hotelQueryOptions = {
-    chainNames: string[], 
-    area:string, 
-    starRating:number, 
-    offset:number
-}
-
 export type hotelRoomQueryOptions = {
     chainNames: string[], 
     area:string, 
-    starRating:number, 
-    offset:number
+    starRating:number,
+    maxPrice:number,
+    minPrice:number,
 };
