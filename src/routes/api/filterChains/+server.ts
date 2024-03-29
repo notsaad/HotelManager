@@ -1,4 +1,5 @@
-import { getAllHotelRooms } from "$lib/server/db";
+import { getAllHotelRooms, getAllHotels } from "$lib/server/db";
+import type { hotelQueryOptions } from "$lib/server/db/types";
 import type { RequestHandler } from "./$types";
 import { json } from "@sveltejs/kit";
 
@@ -7,7 +8,7 @@ export const GET = (({ url }) => {
     chainName = url.searchParams.get("chainName")?.toString().replace("%20", " ").split(",") as unknown as string[] ?? [];
 
     
-    const query:hotelRoomQueryOptions = {
+    const query:hotelQueryOptions = {
         chainNames: chainName,
         area: url.searchParams.get("area")?.toString() ?? "",
         starRating: parseInt(url.searchParams.get("starRating")?.toString() ?? "0"),
@@ -15,7 +16,7 @@ export const GET = (({ url }) => {
     }
     
     console.log(query);
-    const hotelRooms = getAllHotelRooms(query) ?? [];
+    const hotelRooms = getAllHotels(query) ?? [];
 
     return  json(hotelRooms);
 }) satisfies RequestHandler;

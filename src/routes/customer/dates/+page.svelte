@@ -18,17 +18,17 @@
     }
 
     const minusOffset = () => {
-        offset -= 18;
+        offset -= 24;
         if (offset < 0) offset = 0;
         fetchHotels();
     }
     const plusOffset = () => {
-        offset += 18;
+        offset += 24;
         fetchHotels();
 
-        if (hotelRooms.length < 18) 
+        if (hotelRooms.length < 24) 
         {
-            offset -= 18;
+            offset -= 24;
             fetchHotels();
         }
     }
@@ -82,6 +82,7 @@
                 hotelArea={hotelRoom.area}
                 hotelAddress={hotelRoom.hotel_address}
                 hotelChain={hotelRoom.chain_name}
+                price={hotelRoom.price.toFixed(2)}
             />
         {/each}
     </div>
@@ -111,7 +112,7 @@
 <style>
     .hotelGrid {
         display: grid;
-        grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));
+        grid-template-columns: repeat(auto-fill, minmax(370px, 1fr));
         gap: 10px;
     }
 

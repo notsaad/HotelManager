@@ -5,6 +5,7 @@
     export let hotelAddress: string;
     export let hotelChain: string;
     export let hotelArea: string;
+    export let price: number;
 
     let hotelUrl = `/hotel${Math.floor(Math.random()*18)}.jpg`.toString();
 
@@ -13,7 +14,7 @@
     })
 
     function bookHotel() {
-        // Add your booking logic here
+        // POST reservation or open date selector ? What should the order be
     }
 </script>
 
@@ -31,7 +32,7 @@
                 {/each}
             </div>
         </div>
-        <button on:click={bookHotel}>Book</button>
+        <button on:click={bookHotel}>${price}</button>
     </div>
 </div>
 

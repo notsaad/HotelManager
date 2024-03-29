@@ -1,9 +1,9 @@
-import { getAllHotelRooms, getHotelChains } from "$lib/server/db";
+import { getAllHotels, getHotelChains } from "$lib/server/db";
 import type { PageServerLoad } from "./$types";
 
 export const load = (() => {
     const hotelChains = getHotelChains();
-    const hotelRooms = getAllHotelRooms();
+    const hotelRooms = getAllHotels();
 
     return {
         hotelChains: hotelChains,
