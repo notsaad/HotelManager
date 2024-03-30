@@ -7,7 +7,7 @@
     //export let data: PageData
 </script>
 
-<body>
+<div class="body">
     <div class="mainText">
         <h1>DSO Hotels</h1>
     </div>
@@ -15,7 +15,7 @@
         <a href='/customer'>Room Booking</a>
         <a href='/employee'>Employee Login</a>
     </div>
-</body>
+</div>
 
 <!-- <pre>
     <code>
@@ -25,7 +25,7 @@
 <!-- <button formaction="?/temp"></button> -->
 
 <style>
-    body {
+    .body {
     display: flex;           /* Center content horizontally */
     flex-direction: column;  /* Stack items vertically */
     align-items: center;     /* Center items along the main axis */

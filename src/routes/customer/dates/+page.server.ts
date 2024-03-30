@@ -7,7 +7,6 @@ export const load = (() => {
 
     const hotelMap = new Map();
 
-    console.log(hotelRooms.length)
     for (let i = 0; i < hotelRooms.length; i++) {
         if (!hotelMap.has(hotelRooms[i].hotel_address)) {
             hotelMap.set(hotelRooms[i].hotel_address, {

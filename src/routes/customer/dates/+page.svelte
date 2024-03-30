@@ -4,7 +4,6 @@
 	import HotelCard from "../../../components/Hotel.svelte";
     
     export let data: PageData;
-    let selectedChain = ""
     let offset = 0;
     let area = "";
     let starCount = 0;
@@ -14,9 +13,15 @@
     
     let hotelRooms = data.hotelRooms;
     let hotels;
+    let selectedChains:string[] = [];
     changeGrid();
-    
+
     async function fetchHotels() {
+        console.log(selectedChains)
+        let selectedChain = "";
+        if (selectedChains.length > 0) {
+            selectedChain = selectedChains.join(",");
+        }
         let res = await fetch(`/api/filterChains?chainName=${selectedChain.replace(" ", "%20")}&area=${area}&starRating=${starCount}&minPrice=${minPrice}&maxPrice=${maxPrice}&minCapacity=${minCapacity}`)
         let data = await res.json();
         hotelRooms = data;
@@ -30,7 +35,6 @@
         changeGrid();
     }
     const plusOffset = () => {
-        console.log(hotels.length, offset)
         if (hotels.length >= offset + 24) 
         {
             offset += 24;
@@ -43,15 +47,12 @@
         fetchHotels()
     }
 
-    let hotelChainDropDownOptions = [ {value: "", label:"Any"} ]
+    let hotelChainDropDownOptions:string[] = []
     data.hotelChains.forEach(hotelChain => {
-        hotelChainDropDownOptions.push({
-            value: JSON.stringify(hotelChain.chain_name, null, 2).replaceAll("\"", ""),
-            label: JSON.stringify(hotelChain.chain_name, null, 2).replaceAll("\"", "")
-        })
+        hotelChainDropDownOptions.push(hotelChain.chain_name)
     });
 
-    selectedChain = hotelChainDropDownOptions[0].value;
+
 
     function changeGrid() {
         hotels = hotelRooms.slice(offset, offset + 24);
@@ -61,41 +62,39 @@
 
   <h2>Continue Booking</h2>
 
-  <div class="filterDiv">
-    <div class="filter">
-        <label for="hotelChain">Hotel Chain</label>
-        <select bind:value={selectedChain} on:change={fetchHotels}>
-            {#each hotelChainDropDownOptions as option}
-            <option value={option.value}>
-                {option.label}
-            </option>
-            {/each}
-        </select>
-    </div>
+  <div class="filters">
 
-    <div class="filter">
-        <label for="area">Area</label>
-        <input type="text" bind:value={area} placeholder="Area" on:input={fetchHotels}/>
+    <div class="filterDiv">
+        <div class="filter">
+            <input type="text" bind:value={area} placeholder="Area" on:input={fetchHotels}/>
+        </div>
+        
+        <div class="fiter">
+            <input class="price" type="number" bind:value={minPrice} placeholder="Min Price" on:input={fetchHotels}/>
+            <input class="price" type="number" bind:value={maxPrice} placeholder="Max Price" on:input={fetchHotels}/>
+        </div>
+        <div class="filter">
+            <div>
+                {#each Array(5) as _, i}
+                    {#if i < starCount}
+                        <button class="fa-solid fa-star star fa-2x" style="color: #FFD43B;" on:click={() => updateStarCount(i)}></button>
+                    {/if}
+                    {#if i >= starCount}
+                        <button class="fa-regular fa-star star fa-2x" style="color: #FFD43B;" on:click={() => updateStarCount(i)}></button>
+                    {/if}
+                {/each}
+            </div>
+        </div>
     </div>
-    
-    <div class="fiter">
-        <label for="price">Price (min, max)</label>
-        <input type="number" bind:value={minPrice} placeholder="Min Price" on:input={fetchHotels}/>
-        <input type="number" bind:value={maxPrice} placeholder="Max Price" on:input={fetchHotels}/>
-    </div>
-    <div class="filter">
-        <label for="starRating">Rating</label>
-        <div>
-            {#each Array(5) as _, i}
-                {#if i < starCount}
-                    <button class="fa-solid fa-star star fa-2x" style="color: #FFD43B;" on:click={() => updateStarCount(i)}></button>
-                {/if}
-                {#if i >= starCount}
-                    <button class="fa-regular fa-star star fa-2x" style="color: #FFD43B;" on:click={() => updateStarCount(i)}></button>
-                {/if}
+    <div class="filterDiv">
+        <div class="filter">
+            {#each hotelChainDropDownOptions as option}
+                    <input class="checkbox" id={option} type="checkbox" bind:group={selectedChains} value={option} on:change={fetchHotels}>
+                    <label class="checkboxlabel" for={option}>{option}</label>
             {/each}
         </div>
     </div>
+
   </div>
 
 
@@ -145,10 +144,11 @@
     }
 
     .filterDiv {
+        width: 800px;
+        min-width: fit-content;
         display: flex;
         justify-content: space-between;
-        
-        max-width: 1500px;
+        padding: 10px 10px;
     }
 
     .filter {
@@ -159,6 +159,11 @@
 
     input {
         padding: 10px;
+    }
+
+    .price {
+        width: 100px;
+    
     }
 
     select {
@@ -173,4 +178,28 @@
     .star:hover{
         cursor: pointer;
     }
+
+    .checkboxlabel {
+        display:block;
+        border:solid 1px gray;
+        padding: 8px 12px;
+        border-radius:40px;
+        -webkit-font-smoothing: antialiased; 
+        margin-top:10px;
+        font-family:Arial,Helvetica,sans-serif;
+        color:gray;
+        text-align:center;
+    }
+
+    input[type=checkbox] {
+        display: none;
+    }
+
+    input:checked + label {
+        border: solid 1px rgb(27, 112, 203);
+        color: white;
+        background-color: rgb(27, 112, 203);
+        
+    }
+
 </style>

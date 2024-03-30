@@ -5,7 +5,7 @@ export const Hotel_Chains: HotelChain[] = [
     { centralOfficeAddress: "123 Main Blvd, Seattle, WA, USA", chainName: "Cascade Resorts", numHotels: 12, emailAddress: "info@cascaderesorts.com", phoneNumber: "206-555-1234" },
     { centralOfficeAddress: "800 Broadway Ave, New York City, NY, USA", chainName: "Empire Hospitality", numHotels: 8, emailAddress: "bookings@empirehotels.com", phoneNumber: "212-987-6543" },
     { centralOfficeAddress: "Avenida Paseo de la Reforma, Mexico City, Mexico", chainName: "Sol Azteca", numHotels: 20, emailAddress: "reservaciones@solazteca.mx", phoneNumber: " 52 55 5555 1234" },
-    { centralOfficeAddress: "300 Bay Street, Suite 1000,  Montreal, QC, Canada", chainName: "Le Fleuron", numHotels: 6, emailAddress: "bonjour@lefleuron.ca", phoneNumber: "514-987-6543" }
+    { centralOfficeAddress: "300 Bay Street, Suite 1000, Montreal, QC, Canada", chainName: "Le Fleuron", numHotels: 6, emailAddress: "bonjour@lefleuron.ca", phoneNumber: "514-987-6543" }
 ];
 
 export const Hotels: Hotel[] = [
@@ -17,17 +17,22 @@ export const Hotels: Hotel[] = [
     { hotelAddress: "167 Portage Avenue, Winnipeg, MB, Canada", centralOfficeAddress: "50 York Street, Toronto, ON, Canada", area:"Winnipeg", starRating: 3, numRooms: 95, contactInfo: "portage@hamlethotels.ca" },
     { hotelAddress: "5811 Spring Garden Road, Halifax, NS, Canada", centralOfficeAddress: "50 York Street, Toronto, ON, Canada", area:"Halifax", starRating: 4, numRooms: 110, contactInfo: "springgarden@hamlethotels.ca" },
     { hotelAddress: "500 Water Street, St. John's, NL, Canada", centralOfficeAddress: "50 York Street, Toronto, ON, Canada", area:"St. John's", starRating: 3, numRooms: 75, contactInfo: "water@hamlethotels.ca" }, 
-    { hotelAddress: "150 King Street, Calgary, AB, Canada", centralOfficeAddress: "50 York Street, Toronto, ON, Canada", area:"Calgary", starRating: 4, numRooms: 140, contactInfo: "king@hamlethotels.ca" }, 
+    { hotelAddress: "150 King Street, Calgary, AB, Canada", centralOfficeAddress: "50 York Street, Toronto, ON, Canada", area:"Calgary", starRating: 2, numRooms: 140, contactInfo: "king@hamlethotels.ca" }, 
 
     // Cascade Resorts
     { hotelAddress: "1234 1st Avenue, Seattle, WA, USA", centralOfficeAddress: "123 Main Blvd, Seattle, WA, USA", area:"Seattle", starRating: 4, numRooms: 150, contactInfo: "first@cascaderesorts.com" },
-    { hotelAddress: "110 2nd Street, Portland, OR, USA", centralOfficeAddress: "123 Main Blvd, Seattle, WA, USA", area:"Portland", starRating: 3, numRooms: 120, contactInfo: "second@cascaderesorts.com" },
+    { hotelAddress: "110 2nd Street, Portland, OR, USA", centralOfficeAddress: "123 Main Blvd, Seattle, WA, USA", area:"Portland", starRating: 1, numRooms: 120, contactInfo: "second@cascaderesorts.com" },
     { hotelAddress: "555 Market Street, San Francisco, CA, USA", centralOfficeAddress: "123 Main Blvd, Seattle, WA, USA", area:"San Fransisco", starRating: 4, numRooms: 180, contactInfo: "market@cascaderesorts.com" },
     { hotelAddress: "900 Wilshire Blvd, Los Angeles, CA, USA", centralOfficeAddress: "123 Main Blvd, Seattle, WA, USA", area:"Los Angeles", starRating: 5, numRooms: 250, contactInfo: "wilshire@cascaderesorts.com" },
     { hotelAddress: "200 Pine Street, San Diego, CA, USA", centralOfficeAddress: "123 Main Blvd, Seattle, WA, USA", area:"San Diego", starRating: 2, numRooms: 100, contactInfo: "pine@cascaderesorts.com" },
     { hotelAddress: "660 Broadway, Denver, CO, USA", centralOfficeAddress: "123 Main Blvd, Seattle, WA, USA", area:"Denver", starRating: 4, numRooms: 140, contactInfo: "broadway@cascaderesorts.com" },
     { hotelAddress: "300 Las Vegas Blvd, Las Vegas, NV, USA", centralOfficeAddress: "123 Main Blvd, Seattle, WA, USA", area:"Las Vegas", starRating: 5, numRooms: 300, contactInfo: "lasvegas@cascaderesorts.com" },
     { hotelAddress: "456 Elm Street, Phoenix, AZ, USA", centralOfficeAddress: "123 Main Blvd, Seattle, WA, USA", area:"Phoenix", starRating: 3, numRooms: 110, contactInfo: "elm@cascaderesorts.com" },
+    
+    // New hotels
+    { hotelAddress: "200 Broadway, New York City, NY, USA", centralOfficeAddress: "123 Main Blvd, Seattle, WA, USA", area: "New York City", starRating: 2, numRooms: 200, contactInfo: "broadway@cascaderesorts.com" },
+    { hotelAddress: "350 Front Street West, Toronto, ON, Canada", centralOfficeAddress: "123 Main Blvd, Seattle, WA, USA", area: "Toronto", starRating: 3, numRooms: 150, contactInfo: "frontst@cascaderesorts.com" },
+      
 
     // Empire Hospitality
     { hotelAddress: "1234 5th Avenue, New York City, NY, USA", centralOfficeAddress: "800 Broadway Ave, New York City, NY, USA", area:"New York City", starRating: 4, numRooms: 93, contactInfo: "fifth@emiprehotels.com" },
@@ -42,7 +47,7 @@ export const Hotels: Hotel[] = [
     // Sol Azteca
     { hotelAddress: "1234 Avenida Insurgentes, Mexico City, Mexico", centralOfficeAddress: "Avenida Paseo de la Reforma, Mexico City, Mexico", area:"Mexico", starRating: 4, numRooms: 150, contactInfo: "insurgentes@solazteca.mx" },
     { hotelAddress: "110 Avenida Juarez, Mexico City, Mexico", centralOfficeAddress: "Avenida Paseo de la Reforma, Mexico City, Mexico", area:"Mexico", starRating: 3, numRooms: 120, contactInfo: "juarez@solazteca.mx" },
-    { hotelAddress: "500 Calle Colón, Guadalajara, Mexico", centralOfficeAddress: "Avenida Paseo de la Reforma, Mexico City, Mexico", area:"Mexico", starRating: 4, numRooms: 130, contactInfo: "colon@solazteca.mx" },
+    { hotelAddress: "500 Calle Colón, Guadalajara, Mexico", centralOfficeAddress: "Avenida Paseo de la Reforma, Mexico City, Mexico", area:"Mexico", starRating: 2, numRooms: 130, contactInfo: "colon@solazteca.mx" },
     { hotelAddress: "30 Avenida de las Américas, Monterrey, Mexico", centralOfficeAddress: "Avenida Paseo de la Reforma, Mexico City, Mexico", area:"Mexico", starRating: 3, numRooms: 100, contactInfo: "americas@solazteca.mx" },
     { hotelAddress: "250 Avenida Tulum, Cancún, Mexico", centralOfficeAddress: "Avenida Paseo de la Reforma, Mexico City, Mexico", area:"Mexico", starRating: 5, numRooms: 220, contactInfo: "tulum@solazteca.mx" },
     { hotelAddress: "80 Calle Hidalgo, Puebla, Mexico", centralOfficeAddress: "Avenida Paseo de la Reforma, Mexico City, Mexico", area:"Mexico", starRating: 3, numRooms: 90, contactInfo: "hidalgo@solazteca.mx" },
@@ -50,14 +55,19 @@ export const Hotels: Hotel[] = [
     { hotelAddress: "40 Calle Principal, Oaxaca, Mexico", centralOfficeAddress: "Avenida Paseo de la Reforma, Mexico City, Mexico", area:"Mexico", starRating: 4, numRooms: 110, contactInfo: "principal@solazteca.mx" },
 
     // Le Fleuron
-    { hotelAddress: "1234 Rue Sainte-Catherine, Montreal, QC, Canada", centralOfficeAddress: "300 Bay Street, Suite 1000,  Montreal, QC, Canada", area:"Montreal", starRating: 4, numRooms: 150, contactInfo: "stcatherine@lefleuron.ca" },
-    { hotelAddress: "110 Rue Sherbrooke, Montreal, QC, Canada", centralOfficeAddress: "300 Bay Street, Suite 1000,  Montreal, QC, Canada", area:"Montreal", starRating: 3, numRooms: 120, contactInfo: "sherbrook@lefleuron.ca" },
-    { hotelAddress: "400 Boulevard René-Lévesque, Montreal, QC, Canada", centralOfficeAddress: "300 Bay Street, Suite 1000,  Montreal, QC, Canada", area:"Montreal", starRating: 4, numRooms: 160, contactInfo: "levesque@lefleuron.ca" },
-    { hotelAddress: "85 Rue Crescent, Montreal, QC, Canada", centralOfficeAddress: "300 Bay Street, Suite 1000,  Montreal, QC, Canada", area:"Montreal", starRating: 3, numRooms: 90, contactInfo: "crescent@lefleuron.ca" },
-    { hotelAddress: "200 Rue Peel, Montreal, QC, Canada", centralOfficeAddress: "300 Bay Street, Suite 1000,  Montreal, QC, Canada", area:"Montreal", starRating: 5, numRooms: 110, contactInfo: "peel@lefleuron.ca" },
-    { hotelAddress: "55 Rue Saint-Jacques, Montreal, QC, Canada", centralOfficeAddress: "300 Bay Street, Suite 1000,  Montreal, QC, Canada", area:"Montreal", starRating: 3, numRooms: 85, contactInfo: "saintjacques@lefleuron.ca" },
-    { hotelAddress: "1000 Rue de la Gauchetière, Montreal, QC, Canada", centralOfficeAddress: "300 Bay Street, Suite 1000,  Montreal, QC, Canada", area:"Montreal", starRating: 4, numRooms: 125, contactInfo: "gauchetiere@lefleuron.ca" },
-    { hotelAddress: "1 Rue Frontenac, Quebec City, QC, Canada", centralOfficeAddress: "300 Bay Street, Suite 1000,  Montreal, QC, Canada", area:"Montreal", starRating: 4, numRooms: 140, contactInfo: "frontenac@lefleuron.ca" },
+    { hotelAddress: "1234 Rue Sainte-Catherine, Montreal, QC, Canada", centralOfficeAddress: "300 Bay Street, Suite 1000, Montreal, QC, Canada", area:"Montreal", starRating: 4, numRooms: 150, contactInfo: "stcatherine@lefleuron.ca" },
+    { hotelAddress: "110 Rue Sherbrooke, Montreal, QC, Canada", centralOfficeAddress: "300 Bay Street, Suite 1000, Montreal, QC, Canada", area:"Montreal", starRating: 3, numRooms: 120, contactInfo: "sherbrook@lefleuron.ca" },
+    { hotelAddress: "400 Boulevard René-Lévesque, Montreal, QC, Canada", centralOfficeAddress: "300 Bay Street, Suite 1000, Montreal, QC, Canada", area:"Montreal", starRating: 4, numRooms: 160, contactInfo: "levesque@lefleuron.ca" },
+    { hotelAddress: "85 Rue Crescent, Montreal, QC, Canada", centralOfficeAddress: "300 Bay Street, Suite 1000, Montreal, QC, Canada", area:"Montreal", starRating: 3, numRooms: 90, contactInfo: "crescent@lefleuron.ca" },
+    { hotelAddress: "200 Rue Peel, Montreal, QC, Canada", centralOfficeAddress: "300 Bay Street, Suite 1000, Montreal, QC, Canada", area:"Montreal", starRating: 5, numRooms: 110, contactInfo: "peel@lefleuron.ca" },
+    { hotelAddress: "55 Rue Saint-Jacques, Montreal, QC, Canada", centralOfficeAddress: "300 Bay Street, Suite 1000, Montreal, QC, Canada", area:"Montreal", starRating: 3, numRooms: 85, contactInfo: "saintjacques@lefleuron.ca" },
+    { hotelAddress: "1000 Rue de la Gauchetière, Montreal, QC, Canada", centralOfficeAddress: "300 Bay Street, Suite 1000, Montreal, QC, Canada", area:"Montreal", starRating: 4, numRooms: 125, contactInfo: "gauchetiere@lefleuron.ca" },
+    { hotelAddress: "1 Rue Frontenac, Quebec City, QC, Canada", centralOfficeAddress: "300 Bay Street, Suite 1000, Montreal, QC, Canada", area:"Montreal", starRating: 5, numRooms: 140, contactInfo: "frontenac@lefleuron.ca" },
+
+    // new hotels
+    { hotelAddress: "25 York Street, Toronto, ON, Canada", centralOfficeAddress: "300 Bay Street, Suite 1000, Montreal, QC, Canada", area: "Toronto", starRating: 4, numRooms: 130, contactInfo: "yorkst@lefleuron.ca" },
+    { hotelAddress: "800 Robson Street, Vancouver, BC, Canada", centralOfficeAddress: "300 Bay Street, Suite 1000, Montreal, QC, Canada", area: "Vancouver", starRating: 3, numRooms: 100, contactInfo: "robson@lefleuron.ca" },
+    { hotelAddress: "90 Sparks Street, Ottawa, ON, Canada", centralOfficeAddress: "300 Bay Street, Suite 1000, Montreal, QC, Canada", area: "Ottawa", starRating: 2, numRooms: 90, contactInfo: "sparks@lefleuron.ca" }
 ]
 
 export const Hotel_Rooms: HotelRoom[] = [
@@ -206,6 +216,26 @@ export const Hotel_Rooms: HotelRoom[] = [
     { hotelAddress: "456 Elm Street, Phoenix, AZ, USA", roomNumber: 601, capacity: 4, viewType: "City View", extendability: true, price: 225, damages: "None", amenities: "TV, AC, Free Breakfast" },
     { hotelAddress: "456 Elm Street, Phoenix, AZ, USA", roomNumber: 708, capacity: 2, viewType: "City View", extendability: false, price: 100, damages: "None", amenities: "TV, Mini Fridge" },
     { hotelAddress: "456 Elm Street, Phoenix, AZ, USA", roomNumber: 804, capacity: 2, viewType: "City View", extendability: false, price: 150, damages: "None", amenities: "TV, AC, Free Breakfast" },
+
+    // new hotels
+    { hotelAddress: "200 Broadway, New York City, NY, USA", roomNumber: 101, capacity: 2, viewType: "City View", extendability: false, price: 200, damages: "None", amenities: "TV, WiFi, Mini Fridge, AC, Pool" }, 
+    { hotelAddress: "200 Broadway, New York City, NY, USA", roomNumber: 105, capacity: 4, viewType: "Park View", extendability: true, price: 275, damages: "None", amenities: "TV, WiFi, Kitchenette, AC, Gym, Free Breakfast" }, 
+    { hotelAddress: "200 Broadway, New York City, NY, USA", roomNumber: 202, capacity: 2, viewType: "City View", extendability: false, price: 175, damages: "Scuffed Wall", amenities: "TV, WiFi, Mini Fridge, AC" }, 
+    { hotelAddress: "200 Broadway, New York City, NY, USA", roomNumber: 310, capacity: 3, viewType: "City View", extendability: true, price: 225, damages: "None", amenities: "TV, WiFi, AC, Gym" },
+    { hotelAddress: "200 Broadway, New York City, NY, USA", roomNumber: 405, capacity: 2, viewType: "City View", extendability: false, price: 150, damages: "None", amenities: "TV, WiFi, Mini Fridge, AC" },
+    { hotelAddress: "200 Broadway, New York City, NY, USA", roomNumber: 510, capacity: 3, viewType: "City View", extendability: true, price: 200, damages: "None", amenities: "TV, WiFi, AC, Gym, Kitchenette" },
+    { hotelAddress: "200 Broadway, New York City, NY, USA", roomNumber: 605, capacity: 2, viewType: "City View", extendability: false, price: 125, damages: "None", amenities: "TV, WiFi, Mini Fridge, AC" },
+    { hotelAddress: "200 Broadway, New York City, NY, USA", roomNumber: 710, capacity: 4, viewType: "City View", extendability: true, price: 250, damages: "None", amenities: "TV, WiFi, AC, Gym, Kitchenette, Pool" },
+
+    // Toronto Hotel Rooms
+    { hotelAddress: "350 Front Street West, Toronto, ON, Canada", roomNumber: 112, capacity: 2, viewType: "Lake View", extendability: false, price: 150, damages: "None", amenities: "TV, WiFi, Mini Fridge, Gym, Free Breakfast" }, 
+    { hotelAddress: "350 Front Street West, Toronto, ON, Canada", roomNumber: 208, capacity: 3, viewType: "City View", extendability: false, price: 175, damages: "Minor Carpet Stain", amenities: "TV, WiFi, AC, Gym" }, 
+    { hotelAddress: "350 Front Street West, Toronto, ON, Canada", roomNumber: 215, capacity: 2, viewType: "City View", extendability: false, price: 160, damages: "None", amenities: "TV, WiFi, Mini Fridge, AC" }, 
+    { hotelAddress: "350 Front Street West, Toronto, ON, Canada", roomNumber: 305, capacity: 4, viewType: "Lake View", extendability: true, price: 250, damages: "None", amenities: "TV, WiFi, Kitchenette, AC, Pool, Free Breakfast" } ,
+    { hotelAddress: "350 Front Street West, Toronto, ON, Canada", roomNumber: 405, capacity: 2, viewType: "City View", extendability: false, price: 150, damages: "None", amenities: "TV, WiFi, Mini Fridge, AC" },
+    { hotelAddress: "350 Front Street West, Toronto, ON, Canada", roomNumber: 510, capacity: 3, viewType: "City View", extendability: true, price: 200, damages: "None", amenities: "TV, WiFi, AC, Gym, Kitchenette" },
+    { hotelAddress: "350 Front Street West, Toronto, ON, Canada", roomNumber: 605, capacity: 2, viewType: "City View", extendability: false, price: 125, damages: "None", amenities: "TV, WiFi, Mini Fridge, AC" },
+    { hotelAddress: "350 Front Street West, Toronto, ON, Canada", roomNumber: 710, capacity: 4, viewType: "City View", extendability: true, price: 250, damages: "None", amenities: "TV, WiFi, AC, Gym, Kitchenette, Pool" },
 
     // Empire Hospitality
     { hotelAddress: "1234 5th Avenue, New York City, NY, USA", roomNumber: 101, capacity: 2, viewType: "City View", extendability: true, price: 150, damages: "None", amenities: "TV, Mini Fridge, Gym, Free Breakfast" },
@@ -425,6 +455,35 @@ export const Hotel_Rooms: HotelRoom[] = [
     { hotelAddress: "1 Rue Frontenac, Quebec City, QC, Canada", roomNumber: 601, capacity: 4, viewType: "City View", extendability: true, price: 225, damages: "None", amenities: "TV, AC, Free Breakfast" },
     { hotelAddress: "1 Rue Frontenac, Quebec City, QC, Canada", roomNumber: 708, capacity: 2, viewType: "City View", extendability: false, price: 100, damages: "None", amenities: "TV, Mini Fridge" },
     { hotelAddress: "1 Rue Frontenac, Quebec City, QC, Canada", roomNumber: 804, capacity: 2, viewType: "City View", extendability: false, price: 150, damages: "None", amenities: "TV, AC, Free Breakfast" },
+
+    // new hotel rooms
+    { hotelAddress: "25 York Street, Toronto, ON, Canada", roomNumber: 101, capacity: 2, viewType: "City View", extendability: false, price: 175, damages: "None", amenities: "TV, WiFi, AC, Gym" },
+    { hotelAddress: "25 York Street, Toronto, ON, Canada", roomNumber: 108, capacity: 4, viewType: "City View", extendability: true, price: 250, damages: "None", amenities: "TV, WiFi, Kitchenette, AC, Gym, Free Breakfast" },
+    { hotelAddress: "25 York Street, Toronto, ON, Canada", roomNumber: 203, capacity: 2, viewType: "Courtyard View", extendability: false, price: 160, damages: "None", amenities: "TV, WiFi, Mini Fridge, AC" },
+    { hotelAddress: "25 York Street, Toronto, ON, Canada", roomNumber: 215, capacity: 3, viewType: "City View", extendability: true, price: 200, damages: "Minor Carpet Stain", amenities: "TV, WiFi, AC, Free Breakfast" },
+    { hotelAddress: "25 York Street, Toronto, ON, Canada", roomNumber: 302, capacity: 2, viewType: "City View", extendability: false, price: 175, damages: "None", amenities: "TV, WiFi, Mini Fridge, AC, Gym" },
+    { hotelAddress: "25 York Street, Toronto, ON, Canada", roomNumber: 309, capacity: 4, viewType: "Courtyard View", extendability: true, price: 240, damages: "None", amenities: "TV, WiFi, Kitchenette, AC, Pool" },
+    { hotelAddress: "25 York Street, Toronto, ON, Canada", roomNumber: 405, capacity: 2, viewType: "City View", extendability: false, price: 165, damages: "Scuffed Wall", amenities: "TV, WiFi, AC" },
+    { hotelAddress: "25 York Street, Toronto, ON, Canada", roomNumber: 410, capacity: 4, viewType: "City View", extendability: true, price: 260, damages: "None", amenities: "TV, WiFi, Kitchenette, AC, Gym, Pool, Free Breakfast" },
+
+    { hotelAddress: "800 Robson Street, Vancouver, BC, Canada", roomNumber: 102, capacity: 2, viewType: "Mountain View", extendability: false, price: 150, damages: "None", amenities: "TV, WiFi, AC, Gym" },
+    { hotelAddress: "800 Robson Street, Vancouver, BC, Canada", roomNumber: 110, capacity: 4, viewType: "City View", extendability: true, price: 220, damages: "None", amenities: "TV, WiFi, Kitchenette, AC, Gym, Free Breakfast" },
+    { hotelAddress: "800 Robson Street, Vancouver, BC, Canada", roomNumber: 205, capacity: 2, viewType: "City View", extendability: false, price: 160, damages: "Broken Lamp", amenities: "TV, WiFi, Mini Fridge, AC" },
+    { hotelAddress: "800 Robson Street, Vancouver, BC, Canada", roomNumber: 212, capacity: 3, viewType: "Mountain View", extendability: true, price: 200, damages: "None", amenities: "TV, WiFi, AC, Free Breakfast" },
+    { hotelAddress: "800 Robson Street, Vancouver, BC, Canada", roomNumber: 301, capacity: 2, viewType: "Courtyard View", extendability: false, price: 140, damages: "None", amenities: "TV, WiFi, Mini Fridge, AC" },
+    { hotelAddress: "800 Robson Street, Vancouver, BC, Canada", roomNumber: 315, capacity: 4, viewType: "City View", extendability: true, price: 230, damages: "Scuffed Wall", amenities: "TV, WiFi, Kitchenette, AC, Pool" }, 
+    { hotelAddress: "800 Robson Street, Vancouver, BC, Canada", roomNumber: 403, capacity: 3, viewType: "Mountain View", extendability: false, price: 180, damages: "None", amenities: "TV, WiFi, AC, Gym" },
+    { hotelAddress: "800 Robson Street, Vancouver, BC, Canada", roomNumber: 411, capacity: 2, viewType: "City View", extendability: false, price: 155, damages: "None", amenities: "TV, WiFi, Mini Fridge, AC, Gym, Free Breakfast" }, 
+
+    { hotelAddress: "90 Sparks Street, Ottawa, ON, Canada", roomNumber: 102, capacity: 2, viewType: "Courtyard View", extendability: false, price: 120, damages: "None", amenities: "TV, WiFi, AC" },
+    { hotelAddress: "90 Sparks Street, Ottawa, ON, Canada", roomNumber: 109, capacity: 3, viewType: "Parliament View", extendability: true, price: 180, damages: "None", amenities: "TV, WiFi, AC, Gym, Free Breakfast" },
+    { hotelAddress: "90 Sparks Street, Ottawa, ON, Canada", roomNumber: 201, capacity: 2, viewType: "Courtyard View", extendability: false, price: 115, damages: "Minor Carpet Stain", amenities: "TV, WiFi, Mini Fridge, AC" },
+    { hotelAddress: "90 Sparks Street, Ottawa, ON, Canada", roomNumber: 216, capacity: 2, viewType: "Parliament View", extendability: false, price: 160, damages: "None", amenities: "TV, WiFi, AC" },
+    { hotelAddress: "90 Sparks Street, Ottawa, ON, Canada", roomNumber: 305, capacity: 3, viewType: "Courtyard View", extendability: false, price: 130, damages: "None", amenities: "TV, WiFi, Mini Fridge, AC, Gym" },
+    { hotelAddress: "90 Sparks Street, Ottawa, ON, Canada", roomNumber: 310, capacity: 2, viewType: "Parliament View", extendability: false, price: 150, damages: "Scuffed Wall", amenities: "TV, WiFi, AC, Free Breakfast" },
+    { hotelAddress: "90 Sparks Street, Ottawa, ON, Canada", roomNumber: 402, capacity: 4, viewType: "Parliament View", extendability: true, price: 220, damages: "None", amenities: "TV, WiFi, Kitchenette, AC, Gym" },
+    { hotelAddress: "90 Sparks Street, Ottawa, ON, Canada", roomNumber: 412, capacity: 2, viewType: "Courtyard View", extendability: false, price: 125, damages: "None", amenities: "TV, WiFi, Mini Fridge, AC, Gym, Free Breakfast" }
+
 ];
 
 export const Employees: Employee[] = [
