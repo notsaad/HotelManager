@@ -17,7 +17,6 @@
     changeGrid();
 
     async function fetchHotels() {
-        console.log(selectedChains)
         let selectedChain = "";
         if (selectedChains.length > 0) {
             selectedChain = selectedChains.join(",");
@@ -114,9 +113,11 @@
         {/each}
     </div>
 
-    <div>
-        <button on:click={minusOffset}>Back</button>
-        <button on:click={plusOffset}>Next</button>
+    <div class="buttonContainer">
+        <div>
+            <button class="changePageButton prevBtn" on:click={minusOffset}>Back</button>
+            <button class="changePageButton nextBtn" on:click={plusOffset}>Next</button>
+        </div>
     </div>
 
     <ul>
@@ -166,10 +167,6 @@
     
     }
 
-    select {
-        padding: 10px;
-    }
-
     .star {
         background: none;
         border: none;
@@ -202,4 +199,37 @@
         
     }
 
+    .buttonContainer {
+        display: flex;
+        justify-content: center;
+        margin: 20px 0;
+    }
+
+    .changePageButton {
+        background-color: #007bff;
+        border-style: solid;
+        border-color: #007bff;
+        color: white;
+        padding: 8px 17px;
+        border-radius: 5px;
+        font-size: 16px;
+        margin: auto;
+        text-align: center;
+        font-weight: bold;
+    }
+
+    .changePageButton:hover {
+        background-color: #0059ff;
+        color: white;
+        cursor: pointer;
+        border-color: #0059ff;
+    }
+
+    .nextBtn {
+        border-radius: 5px 20px 20px 5px;
+    }
+
+    .prevBtn {
+        border-radius: 20px 5px 5px 20px;
+    }
 </style>

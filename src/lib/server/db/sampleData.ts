@@ -266,13 +266,13 @@ export const Hotel_Rooms: HotelRoom[] = [
     { hotelAddress: "777 Park Avenue, New York City, NY, USA", roomNumber: 804, capacity: 2, viewType: "City View", extendability: false, price: 150, damages: "None", amenities: "TV, AC, Free Breakfast" },
 
     { hotelAddress: "2 Wall Street, New York City, NY, USA", roomNumber: 101, capacity: 2, viewType: "City View", extendability: true, price: 150, damages: "None", amenities: "TV, Mini Fridge, Gym, Free Breakfast" },
-    { hotelAddress: "2 Wall Street, New York City, NY, USA", roomNumber: 203, capacity: 2, viewType: "City View", extendability: true, price: 150, damages: "Broken Lampshade", amenities: "AC, Gym, Free Breakfast" },
+    { hotelAddress: "2 Wall Street, New York City, NY, USA", roomNumber: 203, capacity: 2, viewType: "City View", extendability: true, price: 250, damages: "Broken Lampshade", amenities: "AC, Gym, Free Breakfast" },
     { hotelAddress: "2 Wall Street, New York City, NY, USA", roomNumber: 302, capacity: 4, viewType: "City View", extendability: false, price: 200, damages: "None", amenities: "TV, AC, Free Breakfast" },
-    { hotelAddress: "2 Wall Street, New York City, NY, USA", roomNumber: 405, capacity: 2, viewType: "City View", extendability: false, price: 125, damages: "None", amenities: "TV, Mini Fridge, Free Breakfast" },
+    { hotelAddress: "2 Wall Street, New York City, NY, USA", roomNumber: 405, capacity: 2, viewType: "City View", extendability: false, price: 225, damages: "None", amenities: "TV, Mini Fridge, Free Breakfast" },
     { hotelAddress: "2 Wall Street, New York City, NY, USA", roomNumber: 510, capacity: 3, viewType: "City View", extendability: true, price: 175, damages: "Small Carpet Stain", amenities: "TV, AC, Gym, Kitchenette" },
-    { hotelAddress: "2 Wall Street, New York City, NY, USA", roomNumber: 601, capacity: 4, viewType: "City View", extendability: true, price: 225, damages: "None", amenities: "TV, AC, Free Breakfast" },
-    { hotelAddress: "2 Wall Street, New York City, NY, USA", roomNumber: 708, capacity: 2, viewType: "City View", extendability: false, price: 100, damages: "None", amenities: "TV, Mini Fridge" },
-    { hotelAddress: "2 Wall Street, New York City, NY, USA", roomNumber: 804, capacity: 2, viewType: "City View", extendability: false, price: 150, damages: "None", amenities: "TV, AC, Free Breakfast" },
+    { hotelAddress: "2 Wall Street, New York City, NY, USA", roomNumber: 601, capacity: 4, viewType: "City View", extendability: true, price: 125, damages: "None", amenities: "TV, AC, Free Breakfast" },
+    { hotelAddress: "2 Wall Street, New York City, NY, USA", roomNumber: 708, capacity: 2, viewType: "City View", extendability: false, price: 230, damages: "None", amenities: "TV, Mini Fridge" },
+    { hotelAddress: "2 Wall Street, New York City, NY, USA", roomNumber: 804, capacity: 2, viewType: "City View", extendability: false, price: 550, damages: "None", amenities: "TV, AC, Free Breakfast" },
 
     { hotelAddress: "30 Rockefeller Plaza, New York City, NY, USA", roomNumber: 101, capacity: 2, viewType: "City View", extendability: true, price: 150, damages: "None", amenities: "TV, Mini Fridge, Gym, Free Breakfast" },
     { hotelAddress: "30 Rockefeller Plaza, New York City, NY, USA", roomNumber: 203, capacity: 2, viewType: "City View", extendability: true, price: 150, damages: "Broken Lampshade", amenities: "AC, Gym, Free Breakfast" },
@@ -289,7 +289,7 @@ export const Hotel_Rooms: HotelRoom[] = [
     { hotelAddress: "200 State Street, Boston, MA, USA", roomNumber: 405, capacity: 2, viewType: "City View", extendability: false, price: 125, damages: "None", amenities: "TV, Mini Fridge, Free Breakfast" },
     { hotelAddress: "200 State Street, Boston, MA, USA", roomNumber: 510, capacity: 3, viewType: "City View", extendability: true, price: 175, damages: "Small Carpet Stain", amenities: "TV, AC, Gym, Kitchenette" },
     { hotelAddress: "200 State Street, Boston, MA, USA", roomNumber: 601, capacity: 4, viewType: "City View", extendability: true, price: 225, damages: "None", amenities: "TV, AC, Free Breakfast" },
-    { hotelAddress: "200 State Street, Boston, MA, USA", roomNumber: 708, capacity: 2, viewType: "City View", extendability: false, price: 100, damages: "None", amenities: "TV, Mini Fridge" },
+    { hotelAddress: "200 State Street, Boston, MA, USA", roomNumber: 708, capacity: 2, viewType: "City View", extendability: false, price: 400, damages: "None", amenities: "TV, Mini Fridge" },
     { hotelAddress: "200 State Street, Boston, MA, USA", roomNumber: 804, capacity: 2, viewType: "City View", extendability: false, price: 150, damages: "None", amenities: "TV, AC, Free Breakfast" },
 
     { hotelAddress: "1600 Pennsylvania Ave, Washington D.C., USA", roomNumber: 101, capacity: 2, viewType: "City View", extendability: true, price: 150, damages: "None", amenities: "TV, Mini Fridge, Gym, Free Breakfast" },
@@ -302,7 +302,7 @@ export const Hotel_Rooms: HotelRoom[] = [
     { hotelAddress: "1600 Pennsylvania Ave, Washington D.C., USA", roomNumber: 804, capacity: 2, viewType: "City View", extendability: false, price: 150, damages: "None", amenities: "TV, AC, Free Breakfast" },
 
     { hotelAddress: "900 Michigan Ave, Chicago, IL, USA", roomNumber: 101, capacity: 2, viewType: "City View", extendability: true, price: 150, damages: "None", amenities: "TV, Mini Fridge, Gym, Free Breakfast" },
-    { hotelAddress: "900 Michigan Ave, Chicago, IL, USA", roomNumber: 203, capacity: 2, viewType: "City View", extendability: true, price: 150, damages: "Broken Lampshade", amenities: "AC, Gym, Free Breakfast" },
+    { hotelAddress: "900 Michigan Ave, Chicago, IL, USA", roomNumber: 203, capacity: 2, viewType: "City View", extendability: true, price: 250, damages: "Broken Lampshade", amenities: "AC, Gym, Free Breakfast" },
     { hotelAddress: "900 Michigan Ave, Chicago, IL, USA", roomNumber: 302, capacity: 4, viewType: "City View", extendability: false, price: 200, damages: "None", amenities: "TV, AC, Free Breakfast" },
     { hotelAddress: "900 Michigan Ave, Chicago, IL, USA", roomNumber: 405, capacity: 2, viewType: "City View", extendability: false, price: 125, damages: "None", amenities: "TV, Mini Fridge, Free Breakfast" },
     { hotelAddress: "900 Michigan Ave, Chicago, IL, USA", roomNumber: 510, capacity: 3, viewType: "City View", extendability: true, price: 175, damages: "Small Carpet Stain", amenities: "TV, AC, Gym, Kitchenette" },
@@ -348,13 +348,13 @@ export const Hotel_Rooms: HotelRoom[] = [
     { hotelAddress: "30 Avenida de las Américas, Monterrey, Mexico", roomNumber: 804, capacity: 2, viewType: "City View", extendability: false, price: 150, damages: "None", amenities: "TV, AC, Free Breakfast" },
 
     { hotelAddress: "250 Avenida Tulum, Cancún, Mexico", roomNumber: 101, capacity: 2, viewType: "City View", extendability: true, price: 150, damages: "None", amenities: "TV, Mini Fridge, Gym, Free Breakfast" },
-    { hotelAddress: "250 Avenida Tulum, Cancún, Mexico", roomNumber: 203, capacity: 2, viewType: "City View", extendability: true, price: 150, damages: "Broken Lampshade", amenities: "AC, Gym, Free Breakfast" },
+    { hotelAddress: "250 Avenida Tulum, Cancún, Mexico", roomNumber: 203, capacity: 2, viewType: "City View", extendability: true, price: 250, damages: "Broken Lampshade", amenities: "AC, Gym, Free Breakfast" },
     { hotelAddress: "250 Avenida Tulum, Cancún, Mexico", roomNumber: 302, capacity: 4, viewType: "City View", extendability: false, price: 200, damages: "None", amenities: "TV, AC, Free Breakfast" },
-    { hotelAddress: "250 Avenida Tulum, Cancún, Mexico", roomNumber: 405, capacity: 2, viewType: "City View", extendability: false, price: 125, damages: "None", amenities: "TV, Mini Fridge, Free Breakfast" },
+    { hotelAddress: "250 Avenida Tulum, Cancún, Mexico", roomNumber: 405, capacity: 2, viewType: "City View", extendability: false, price: 135, damages: "None", amenities: "TV, Mini Fridge, Free Breakfast" },
     { hotelAddress: "250 Avenida Tulum, Cancún, Mexico", roomNumber: 510, capacity: 3, viewType: "City View", extendability: true, price: 175, damages: "Small Carpet Stain", amenities: "TV, AC, Gym, Kitchenette" },
     { hotelAddress: "250 Avenida Tulum, Cancún, Mexico", roomNumber: 601, capacity: 4, viewType: "City View", extendability: true, price: 225, damages: "None", amenities: "TV, AC, Free Breakfast" },
-    { hotelAddress: "250 Avenida Tulum, Cancún, Mexico", roomNumber: 708, capacity: 2, viewType: "City View", extendability: false, price: 100, damages: "None", amenities: "TV, Mini Fridge" },
-    { hotelAddress: "250 Avenida Tulum, Cancún, Mexico", roomNumber: 804, capacity: 2, viewType: "City View", extendability: false, price: 150, damages: "None", amenities: "TV, AC, Free Breakfast" },
+    { hotelAddress: "250 Avenida Tulum, Cancún, Mexico", roomNumber: 708, capacity: 2, viewType: "City View", extendability: false, price: 340, damages: "None", amenities: "TV, Mini Fridge" },
+    { hotelAddress: "250 Avenida Tulum, Cancún, Mexico", roomNumber: 804, capacity: 2, viewType: "City View", extendability: false, price: 250, damages: "None", amenities: "TV, AC, Free Breakfast" },
 
     { hotelAddress: "80 Calle Hidalgo, Puebla, Mexico", roomNumber: 101, capacity: 2, viewType: "City View", extendability: true, price: 150, damages: "None", amenities: "TV, Mini Fridge, Gym, Free Breakfast" },
     { hotelAddress: "80 Calle Hidalgo, Puebla, Mexico", roomNumber: 203, capacity: 2, viewType: "City View", extendability: true, price: 150, damages: "Broken Lampshade", amenities: "AC, Gym, Free Breakfast" },
@@ -394,8 +394,8 @@ export const Hotel_Rooms: HotelRoom[] = [
     { hotelAddress: "1234 Rue Sainte-Catherine, Montreal, QC, Canada", roomNumber: 804, capacity: 2, viewType: "City View", extendability: false, price: 150, damages: "None", amenities: "TV, AC, Free Breakfast" },
 
     { hotelAddress: "110 Rue Sherbrooke, Montreal, QC, Canada", roomNumber: 101, capacity: 2, viewType: "City View", extendability: true, price: 150, damages: "None", amenities: "TV, Mini Fridge, Gym, Free Breakfast" },
-    { hotelAddress: "110 Rue Sherbrooke, Montreal, QC, Canada", roomNumber: 203, capacity: 2, viewType: "City View", extendability: true, price: 150, damages: "Broken Lampshade", amenities: "AC, Gym, Free Breakfast" },
-    { hotelAddress: "110 Rue Sherbrooke, Montreal, QC, Canada", roomNumber: 302, capacity: 4, viewType: "City View", extendability: false, price: 200, damages: "None", amenities: "TV, AC, Free Breakfast" },
+    { hotelAddress: "110 Rue Sherbrooke, Montreal, QC, Canada", roomNumber: 203, capacity: 2, viewType: "City View", extendability: true, price: 90, damages: "Broken Lampshade", amenities: "AC, Gym, Free Breakfast" },
+    { hotelAddress: "110 Rue Sherbrooke, Montreal, QC, Canada", roomNumber: 302, capacity: 4, viewType: "City View", extendability: false, price: 250, damages: "None", amenities: "TV, AC, Free Breakfast" },
     { hotelAddress: "110 Rue Sherbrooke, Montreal, QC, Canada", roomNumber: 405, capacity: 2, viewType: "City View", extendability: false, price: 125, damages: "None", amenities: "TV, Mini Fridge, Free Breakfast" },
     { hotelAddress: "110 Rue Sherbrooke, Montreal, QC, Canada", roomNumber: 510, capacity: 3, viewType: "City View", extendability: true, price: 175, damages: "Small Carpet Stain", amenities: "TV, AC, Gym, Kitchenette" },
     { hotelAddress: "110 Rue Sherbrooke, Montreal, QC, Canada", roomNumber: 601, capacity: 4, viewType: "City View", extendability: true, price: 225, damages: "None", amenities: "TV, AC, Free Breakfast" },
@@ -404,11 +404,11 @@ export const Hotel_Rooms: HotelRoom[] = [
 
     { hotelAddress: "400 Boulevard René-Lévesque, Montreal, QC, Canada", roomNumber: 101, capacity: 2, viewType: "City View", extendability: true, price: 150, damages: "None", amenities: "TV, Mini Fridge, Gym, Free Breakfast" },
     { hotelAddress: "400 Boulevard René-Lévesque, Montreal, QC, Canada", roomNumber: 203, capacity: 2, viewType: "City View", extendability: true, price: 150, damages: "Broken Lampshade", amenities: "AC, Gym, Free Breakfast" },
-    { hotelAddress: "400 Boulevard René-Lévesque, Montreal, QC, Canada", roomNumber: 302, capacity: 4, viewType: "City View", extendability: false, price: 200, damages: "None", amenities: "TV, AC, Free Breakfast" },
-    { hotelAddress: "400 Boulevard René-Lévesque, Montreal, QC, Canada", roomNumber: 405, capacity: 2, viewType: "City View", extendability: false, price: 125, damages: "None", amenities: "TV, Mini Fridge, Free Breakfast" },
+    { hotelAddress: "400 Boulevard René-Lévesque, Montreal, QC, Canada", roomNumber: 302, capacity: 4, viewType: "City View", extendability: false, price: 400, damages: "None", amenities: "TV, AC, Free Breakfast" },
+    { hotelAddress: "400 Boulevard René-Lévesque, Montreal, QC, Canada", roomNumber: 405, capacity: 2, viewType: "City View", extendability: false, price: 225, damages: "None", amenities: "TV, Mini Fridge, Free Breakfast" },
     { hotelAddress: "400 Boulevard René-Lévesque, Montreal, QC, Canada", roomNumber: 510, capacity: 3, viewType: "City View", extendability: true, price: 175, damages: "Small Carpet Stain", amenities: "TV, AC, Gym, Kitchenette" },
     { hotelAddress: "400 Boulevard René-Lévesque, Montreal, QC, Canada", roomNumber: 601, capacity: 4, viewType: "City View", extendability: true, price: 225, damages: "None", amenities: "TV, AC, Free Breakfast" },
-    { hotelAddress: "400 Boulevard René-Lévesque, Montreal, QC, Canada", roomNumber: 708, capacity: 2, viewType: "City View", extendability: false, price: 100, damages: "None", amenities: "TV, Mini Fridge" },
+    { hotelAddress: "400 Boulevard René-Lévesque, Montreal, QC, Canada", roomNumber: 708, capacity: 2, viewType: "City View", extendability: false, price: 130, damages: "None", amenities: "TV, Mini Fridge" },
     { hotelAddress: "400 Boulevard René-Lévesque, Montreal, QC, Canada", roomNumber: 804, capacity: 2, viewType: "City View", extendability: false, price: 150, damages: "None", amenities: "TV, AC, Free Breakfast" },
 
     { hotelAddress: "85 Rue Crescent, Montreal, QC, Canada", roomNumber: 101, capacity: 2, viewType: "City View", extendability: true, price: 150, damages: "None", amenities: "TV, Mini Fridge, Gym, Free Breakfast" },
@@ -416,7 +416,7 @@ export const Hotel_Rooms: HotelRoom[] = [
     { hotelAddress: "85 Rue Crescent, Montreal, QC, Canada", roomNumber: 302, capacity: 4, viewType: "City View", extendability: false, price: 200, damages: "None", amenities: "TV, AC, Free Breakfast" },
     { hotelAddress: "85 Rue Crescent, Montreal, QC, Canada", roomNumber: 405, capacity: 2, viewType: "City View", extendability: false, price: 125, damages: "None", amenities: "TV, Mini Fridge, Free Breakfast" },
     { hotelAddress: "85 Rue Crescent, Montreal, QC, Canada", roomNumber: 510, capacity: 3, viewType: "City View", extendability: true, price: 175, damages: "Small Carpet Stain", amenities: "TV, AC, Gym, Kitchenette" },
-    { hotelAddress: "85 Rue Crescent, Montreal, QC, Canada", roomNumber: 601, capacity: 4, viewType: "City View", extendability: true, price: 225, damages: "None", amenities: "TV, AC, Free Breakfast" },
+    { hotelAddress: "85 Rue Crescent, Montreal, QC, Canada", roomNumber: 601, capacity: 4, viewType: "City View", extendability: true, price: 325, damages: "None", amenities: "TV, AC, Free Breakfast" },
     { hotelAddress: "85 Rue Crescent, Montreal, QC, Canada", roomNumber: 708, capacity: 2, viewType: "City View", extendability: false, price: 100, damages: "None", amenities: "TV, Mini Fridge" },
     { hotelAddress: "85 Rue Crescent, Montreal, QC, Canada", roomNumber: 804, capacity: 2, viewType: "City View", extendability: false, price: 150, damages: "None", amenities: "TV, AC, Free Breakfast" },
 
@@ -449,7 +449,7 @@ export const Hotel_Rooms: HotelRoom[] = [
 
     { hotelAddress: "1 Rue Frontenac, Quebec City, QC, Canada", roomNumber: 101, capacity: 2, viewType: "City View", extendability: true, price: 150, damages: "None", amenities: "TV, Mini Fridge, Gym, Free Breakfast" },
     { hotelAddress: "1 Rue Frontenac, Quebec City, QC, Canada", roomNumber: 203, capacity: 2, viewType: "City View", extendability: true, price: 150, damages: "Broken Lampshade", amenities: "AC, Gym, Free Breakfast" },
-    { hotelAddress: "1 Rue Frontenac, Quebec City, QC, Canada", roomNumber: 302, capacity: 4, viewType: "City View", extendability: false, price: 200, damages: "None", amenities: "TV, AC, Free Breakfast" },
+    { hotelAddress: "1 Rue Frontenac, Quebec City, QC, Canada", roomNumber: 302, capacity: 4, viewType: "City View", extendability: false, price: 230, damages: "None", amenities: "TV, AC, Free Breakfast" },
     { hotelAddress: "1 Rue Frontenac, Quebec City, QC, Canada", roomNumber: 405, capacity: 2, viewType: "City View", extendability: false, price: 125, damages: "None", amenities: "TV, Mini Fridge, Free Breakfast" },
     { hotelAddress: "1 Rue Frontenac, Quebec City, QC, Canada", roomNumber: 510, capacity: 3, viewType: "City View", extendability: true, price: 175, damages: "Small Carpet Stain", amenities: "TV, AC, Gym, Kitchenette" },
     { hotelAddress: "1 Rue Frontenac, Quebec City, QC, Canada", roomNumber: 601, capacity: 4, viewType: "City View", extendability: true, price: 225, damages: "None", amenities: "TV, AC, Free Breakfast" },

@@ -37,7 +37,7 @@ export const GET = (({ url }) => {
             hotelMap.get(hotelRooms[i].hotel_address).min_capacity = Math.min(hotelMap.get(hotelRooms[i].hotel_address).min_capacity, hotelRooms[i].capacity);
             hotelMap.get(hotelRooms[i].hotel_address).max_capacity = Math.max(hotelMap.get(hotelRooms[i].hotel_address).max_capacity, hotelRooms[i].capacity);
             hotelMap.get(hotelRooms[i].hotel_address).min_price = Math.min(hotelMap.get(hotelRooms[i].hotel_address).min_price, hotelRooms[i].price);
-            hotelMap.get(hotelRooms[i].hotel_address).max = Math.max(hotelMap.get(hotelRooms[i].hotel_address).max_price, hotelRooms[i].price);
+            hotelMap.get(hotelRooms[i].hotel_address).max_price = Math.max(hotelMap.get(hotelRooms[i].hotel_address).max_price, hotelRooms[i].price);
         }
     }
 

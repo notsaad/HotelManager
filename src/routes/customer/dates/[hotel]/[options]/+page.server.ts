@@ -8,8 +8,6 @@ export const load = ({ params }) => {
         optionMap.set(key, value);
     }
 
-    console.log(optionMap);
-
     const rooms = getHotelRooms(params.hotel, optionMap.get("minPrice"), optionMap.get("maxPrice"), optionMap.get("minCapacity"));
 
     return {rooms};
