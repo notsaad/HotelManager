@@ -2,13 +2,11 @@
 	import Room from "../../../../../components/Room.svelte";
 
     export let data;
-    console.log(data)
 </script>
-<h1> Hello </h1>
 
 <div class="roomGrid">
     {#each data.rooms as room}
-        <Room price={room.price} view={room.view_type} capacity={room.capacity} amenities={room.amenities}/>
+        <Room price={room.price} view={room.view_type} capacity={room.capacity} amenities={room.amenities} roomNumber={room.room_number} hotelAddress={room.hotel_address}/>
     {/each}
 </div>
 

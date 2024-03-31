@@ -58,3 +58,11 @@ export type hotelRoomQueryOptions = {
     minPrice:number,
     minCapacity:number
 };
+
+export type bookRoomOptions = {
+    customerID: number,
+    chainAddress: string,
+    roomNumber: number,
+    checkInDate: Date,
+    checkOutDate: Date,
+}

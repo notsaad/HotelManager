@@ -2,16 +2,40 @@
     import '@fortawesome/fontawesome-free/css/all.css';
     import hotelRoom from "$lib/assets/hotelRoom.jpg"
     import { myStore } from '../routes/customer/myStore.js';
+    import { customerStore, beginDateStore, endDateStore } from '../routes/customer/customerStore.js';
 
     export let price: number;
     export let view: string;
     export let capacity: number;
     export let amenities: string;
-    let length = $myStore;
+    export let roomNumber: number;
+    export let hotelAddress: string;
+    
+    const id = parseInt($customerStore);
+    const length = $myStore;
 
-    function bookHotel() {
+    const beginDate = $beginDateStore;
+    const endDate = $endDateStore;
+
+    async function bookHotel() {
         let url = '/customer/dates/confirm/'
-        window.location.href = url;
+
+        const query:bookRoomOptions = {
+            customerID: id,
+            chainAddress: hotelAddress,
+            roomNumber: roomNumber,
+            checkInDate: beginDate,
+            checkOutDate: endDate,
+        }
+
+        let res = await fetch('/api/bookRoom',{
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(query)
+        })
+        // window.location.href = url;
     }
 </script>
 
@@ -25,13 +49,13 @@
                     <i class="fa-solid fa-users"></i>
                 </div>
                 <div class="amenities">
-                    <h4 class="subtitle">{amenities}</h4>
+                    <h4 class="subtitle amenities">{amenities}</h4>
                 </div>
             </div>
             <div class="right">
                 <h4 class="price">${price}<span class="pernight">/night</span></h4>
                 <h4 class="price">{length} Night Stay</h4>
-                <button on:click={bookHotel}>Book for ${length * price}</button>
+                <button on:click={bookHotel}>Book ${length * price}</button>
             </div>
         </div>
     </div>
@@ -41,6 +65,10 @@
 
     h2 {
         margin-bottom: 5px;
+    }
+
+    .amenities {
+        text-overflow: ellipsis;
     }
 
     .subtitle {
@@ -75,7 +103,6 @@
         box-sizing: border-box;
         position: absolute;
         bottom: 10px;
-        display: flex;
         align-items: center;
         width: 100%;
         padding: 5px 20px;
@@ -87,17 +114,23 @@
         z-index: 2;
         color: white;
         margin-top: auto;
-        display: grid;
         width: 100%;
-        grid-template-columns: 1fr 1fr;
     }
 
     .amenities {
-        white-space: nowrap;
+        width: 200px;
+        text-overflow: ellipsis;
     }
 
     .right {
+        display: inline-block;
         margin-left: auto;
+    }
+
+    .left {
+        max-width: 200px;
+        text-overflow: ellipsis;
+        display: inline-block;
     }
 
     .pernight {

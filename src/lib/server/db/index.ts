@@ -1,6 +1,6 @@
 import Database from 'better-sqlite3';
 import { HOTEL_DB_PATH } from '$env/static/private';
-import type { Hotel, HotelChain, Employee, HotelRoom, Customer, Reservation, hotelRoomQueryOptions } from './types';
+import type { Hotel, HotelChain, Employee, HotelRoom, Customer, Reservation, hotelRoomQueryOptions, bookRoomOptions } from './types';
 import { Hotel_Chains, Hotels, Employees, Hotel_Rooms, Customers, Reservations } from './sampleData';
 
 const db = new Database(HOTEL_DB_PATH); // { verbose: console.log });
@@ -101,7 +101,6 @@ function addReservationTable() {
         room_number INTEGER,
         check_in_date DATE,
         check_out_date DATE,
-        total_price DECIMAL,
         PRIMARY KEY (customer_id, hotel_address, room_number, check_in_date), 
         FOREIGN KEY (customer_id) REFERENCES Customers(customer_id),
         FOREIGN KEY (hotel_address, room_number) REFERENCES Hotel_Rooms(hotel_address, room_number) 
@@ -172,7 +171,7 @@ function insertHotelRoom(room: HotelRoom) {
     insertRoomSqlStmnt.run({ address: room.hotelAddress, number: room.roomNumber, capacity: room.capacity, view: room.viewType, extend: room.extendability? 1:0, price: room.price, damages: room.damages, amenities: room.amenities });
 }
 
-function insertCustomer(customer: Customer) {
+export function insertCustomer(customer: Customer) {
     const insertCustomerSql = 'INSERT INTO Customers (customer_id, full_name, address, system_registration_date) VALUES ($id, $name, $address, $date)';
     const insertCustomerSqlStmnt = db.prepare(insertCustomerSql);
 
@@ -181,14 +180,15 @@ function insertCustomer(customer: Customer) {
     const exists = stmnt.get(customer.customerID).found;
 
     if (exists) {
-        return
+        return 'exists';
     };
 
     insertCustomerSqlStmnt.run({ id: customer.customerID, name: customer.fullName, address: customer.address, date: customer.systemRegistrationDate });
+    return 'success';
 }
 
 function insertReservation(reservation: Reservation) {
-    const insertReservationSql = 'INSERT INTO Reservations (customer_id, hotel_address, room_number, check_in_date, check_out_date, total_price) VALUES ($customer, $address, $room, $checkIn, $checkOut, $price)';
+    const insertReservationSql = 'INSERT INTO Reservations (customer_id, hotel_address, room_number, check_in_date, check_out_date) VALUES ($customer, $address, $room, $checkIn, $checkOut)';
     const insertReservationSqlStmnt = db.prepare(insertReservationSql);
 
     const reservationExists = 'select exists(select 1 from Reservations where customer_id = ? and hotel_address = ? and room_number = ? and check_in_date = ?) as found';
@@ -199,7 +199,7 @@ function insertReservation(reservation: Reservation) {
         return
     };
 
-    insertReservationSqlStmnt.run({ customer: reservation.customerID, address: reservation.hotelAddress, room: reservation.roomNumber, checkIn: reservation.checkInDate, checkOut: reservation.checkOutDate, price: reservation.totalPrice });
+    insertReservationSqlStmnt.run({ customer: reservation.customerID, address: reservation.hotelAddress, room: reservation.roomNumber, checkIn: reservation.checkInDate, checkOut: reservation.checkOutDate });
 }
 
 export async function loadDatabase(){
@@ -319,4 +319,11 @@ export function getHotelRooms(hotelAddress: string, min_price: number, max_price
     const stmnt = db.prepare(sql);
     const rows = stmnt.all(hotelAddress, min_price, max_price, min_capacity);
     return rows;
+}
+
+export function bookRoom(options: bookRoomOptions) {
+    const sql = `INSERT INTO Reservations (customer_id, hotel_address, room_number, check_in_date, check_out_date)
+                VALUES (?, ?, ?, ?, ?)`;
+    const stmnt = db.prepare(sql);
+    stmnt.run(options.customerID, options.chainAddress, options.roomNumber, options.checkInDate, options.checkOutDate);
 }

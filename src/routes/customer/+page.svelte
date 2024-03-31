@@ -1,13 +1,18 @@
-<script>
+<script lang="ts">
 // @ts-nocheck
 
-	import { DateInput } from 'date-picker-svelte'
-  import { myStore } from './myStore.js';
-	/**
+    import { DateInput } from 'date-picker-svelte'
+    import { myStore } from './myStore.js';
+    import { customerStore, beginDateStore, endDateStore } from './customerStore.js';
+    /**
 	 * @type {null}
 	 */
-	let checkInDate = null;
-	let checkOutDate = null;
+    let checkInDate:Date = null;
+    let checkOutDate:Date = null;
+    let fullName = null;
+    let customerId = null;
+    let address = null;
+    let customerAdded = false;
     let date = null;
 
     let currentDate = new Date();
@@ -19,26 +24,83 @@
     }
 
     function calculateDaysDifference(startDate, endDate) {
-    if (!startDate || !endDate) return 0; // Handle cases with missing dates
+        if (!startDate || !endDate) return 0; // Handle cases with missing dates
 
-    const timeDifference = endDate.getTime() - startDate.getTime();
-    const daysDifference = Math.abs(timeDifference / (1000 * 60 * 60 * 24)); 
-    console.log(Math.round(daysDifference));
-    return Math.round(daysDifference); 
-  }
-
-    function submitDates(a, b){
-      let url = '/customer/dates/'
-      let length = calculateDaysDifference(checkInDate, checkOutDate);
-      myStore.set(length);
-      console.log($myStore);
-      window.location.href = url;
+        const timeDifference = endDate.getTime() - startDate.getTime();
+        const daysDifference = Math.abs(timeDifference / (1000 * 60 * 60 * 24));
+        return Math.round(daysDifference); 
     }
 
+    function submitDates(a, b){
+        if (!customerAdded) {
+            alert('Please add your information first');
+            return;
+        }
+        customerStore.set(customerId);
+
+        let dd = String(a.getDate()).padStart(2, '0');
+        let mm = String(a.getMonth() + 1).padStart(2, '0'); //January is 0!
+        let yyyy = a.getFullYear();
+
+        const beginDate = `${yyyy}-${mm}-${dd}`;
+        beginDateStore.set(beginDate);
+
+        dd = String(b.getDate()).padStart(2, '0');
+        mm = String(b.getMonth() + 1).padStart(2, '0'); //January is 0!
+        yyyy = b.getFullYear();
+
+        const endDate = `${yyyy}-${mm}-${dd}`;
+        endDateStore.set(endDate);
+
+        let url = `/customer/dates/`
+        let length = calculateDaysDifference(checkInDate, checkOutDate);
+        myStore.set(length);
+        window.location.href = url;
+    }
+
+    async function addCustomer() {
+        if (!fullName || !customerId || !address) {
+            alert('Please enter your full name, customer ID and address');
+            return;
+        }
+
+        const res = await fetch('/api/addCustomer', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                fullname: fullName,
+                customerId: customerId,
+                address: address,
+            })
+        })
+
+        if (!res.ok) {
+          if(res.status === 409) {
+            alert('Customer already exists, signed in with id ' + customerId);
+          } else {
+            alert('Customer was not added successfully');
+            customerAdded = false
+            return;
+          }
+        }
+        customerAdded = true
+
+    }
 </script>
   
 
   <div class="dateDiv">
+    <div class="customerInfo">
+      <h1>Enter your information</h1>
+      <form method="post" on:submit|preventDefault={addCustomer}>
+        <input bind:value={customerId} type="number" id="customerId" name="cId" placeholder="Your ID">
+        <input bind:value={fullName} type="text" id="fname" name="fname" placeholder="Full Name">
+        <input bind:value={address} type="text" id="address" name="address" placeholder="Address">
+        <button>Submit</button>
+      </form>
+    </div>
     <h2>Hotel Booking</h2>
     <div class="checkinDiv">
         <h3>Check-In Date:</h3>
