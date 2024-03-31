@@ -2,19 +2,39 @@
 // @ts-nocheck
 
 	import { DateInput } from 'date-picker-svelte'
+  import { myStore } from './myStore.js';
 	/**
 	 * @type {null}
 	 */
 	let checkInDate = null;
 	let checkOutDate = null;
-    let date = null
+    let date = null;
+
     let currentDate = new Date();
 
     function calculateDayAfter(date) {
         const nextDay = new Date(date);
         nextDay.setDate(nextDay.getDate() + 1); 
-        return nextDay; // Return in 'yyyy-MM-dd' format
+        return nextDay;
     }
+
+    function calculateDaysDifference(startDate, endDate) {
+    if (!startDate || !endDate) return 0; // Handle cases with missing dates
+
+    const timeDifference = endDate.getTime() - startDate.getTime();
+    const daysDifference = Math.abs(timeDifference / (1000 * 60 * 60 * 24)); 
+    console.log(Math.round(daysDifference));
+    return Math.round(daysDifference); 
+  }
+
+    function submitDates(a, b){
+      let url = '/customer/dates/'
+      let length = calculateDaysDifference(checkInDate, checkOutDate);
+      myStore.set(length);
+      console.log($myStore);
+      window.location.href = url;
+    }
+
 </script>
   
 
@@ -30,9 +50,7 @@
     </div>
     <div class="submit">
         {#if checkInDate && checkOutDate}
-            <a href="/customer/dates/">
-                submit dates
-            </a>
+          <button on:click={submitDates(checkInDate, checkOutDate)}>Submit Dates</button>
         {:else}
             <p>Must select dates to proceed</p>
         {/if}

@@ -1,13 +1,17 @@
 <script lang="ts">
     import '@fortawesome/fontawesome-free/css/all.css';
     import hotelRoom from "$lib/assets/hotelRoom.jpg"
+    import { myStore } from '../routes/customer/myStore.js';
 
     export let price: number;
     export let view: string;
     export let capacity: number;
     export let amenities: string;
+    let length = $myStore;
 
     function bookHotel() {
+        let url = '/customer/dates/confirm/'
+        window.location.href = url;
     }
 </script>
 
@@ -26,7 +30,8 @@
             </div>
             <div class="right">
                 <h4 class="price">${price}<span class="pernight">/night</span></h4>
-                <button on:click={bookHotel}>Book</button>
+                <h4 class="price">{length} Night Stay</h4>
+                <button on:click={bookHotel}>Book for ${length * price}</button>
             </div>
         </div>
     </div>
