@@ -72,7 +72,7 @@ h2 {
   margin: 0 10px;  /* Adds some space between the date inputs */
 }
 
-a {
+button {
     width: 120px;
   display: block;     /* Makes the link take up full available width */
   margin: 15px auto;  /* Centers the button horizontally */
@@ -85,7 +85,7 @@ a {
   cursor: pointer;     /* Changes cursor to a pointer on hover */
 }
 
-a:hover {
+button:hover {
     background-color: black;
     color: white;
     cursor: pointer;
