@@ -22,6 +22,8 @@
         }
     }
 
+    export let data;
+
 </script>
 
 <div>
@@ -34,3 +36,48 @@
     <input type="text" bind:value={contactInfo} placeholder="Contact Info"/>
     <button on:click={updateHotelInfo}>Update Info</button>
 </div>
+
+<div>
+    <h1>Hotels (reload page to see changes)</h1>
+    <table>
+        <tr>
+            <th>Address</th>
+            <th>Central Office Address</th>
+            <th>Area</th>
+            <th>Star Rating</th>
+            <th>Number of Rooms</th>
+            <th>Contact Info</th>
+        </tr>
+        {#each data.hotels as hotel}
+        <tr>
+            <td>{hotel.hotel_address}</td>
+            <td>{hotel.central_office_address}</td>
+            <td>{hotel.area}</td>
+            <td>{hotel.star_rating}</td>
+            <td>{hotel.num_rooms}</td>
+            <td>{hotel.contact_info}</td>
+        </tr>
+        {/each}
+    </table>
+</div>
+
+<style>
+    table {
+        font-family: Arial, Helvetica, sans-serif;
+        border-collapse: collapse;
+    }
+    th {
+        padding-top: 12px;
+        padding-bottom: 12px;
+        text-align: left;
+        background-color: #04AA6D;
+        color: white;
+    }
+    tr:hover {background-color: #ddd;}
+    tr:nth-child(even){background-color: #f2f2f2;}
+
+    td, th {
+        border: 1px solid #ddd;
+        padding: 8px;
+    }
+</style>

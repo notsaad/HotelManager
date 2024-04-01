@@ -485,3 +485,24 @@ export function updateHotel(hotelAddress: string, centralOfficeAddress: string, 
     stmnt.run(centralOfficeAddress, area, starRating, numRooms, contactInfo, hotelAddress);
     return true;
 }
+
+export function getAllRooms() {
+    const sql = `SELECT * FROM Hotel_Rooms`;
+    const stmnt = db.prepare(sql);
+    const rows = stmnt.all();
+    return rows;
+}
+
+export function getAllHotels() {
+    const sql = `SELECT * FROM Hotels`;
+    const stmnt = db.prepare(sql);
+    const rows = stmnt.all();
+    return rows;
+}
+
+export function getAllCustomers() {
+    const sql = `SELECT * FROM Customers`;
+    const stmnt = db.prepare(sql);
+    const rows = stmnt.all();
+    return rows;
+}
