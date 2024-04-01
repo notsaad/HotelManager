@@ -16,13 +16,17 @@
             alert('Customer info was not updated successfully');
             return;
         }
+        else{
+            alert('Customer info was successfully updated');
+            return;
+        }
     }
 
     export let data;
 
 </script>
 
-<div>
+<div class="form">
     <h1>Update Customer Info</h1>
     <input type="number" bind:value={customerId} placeholder="Customer ID"/>
     <input type="text" bind:value={customerFullName} placeholder="Full Name"/>
@@ -67,4 +71,43 @@
         border: 1px solid #ddd;
         padding: 8px;
     }
+    /* General container styling */
+.form {
+    text-align: center; /* Centers form elements */
+    margin: 20px auto;  /* Adds margin for visual spacing */
+    padding: 20px;
+    width: 400px;       /* Adjust width as needed */
+    border: 1px solid #ddd; 
+    border-radius: 5px;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1); /* Subtle shadow effect */
+}
+
+/* Style the heading */
+h1 {
+    margin-bottom: 20px; /* Space between heading and inputs */
+}
+
+/* Style the input fields */
+input[type="number"], input[type="text"] {
+    width: calc(100% - 22px); /* Takes up container width, minus padding */
+    margin-bottom: 10px;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+/* Style the button */
+button {
+    background-color: #4CAF50; /* Example button color */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    cursor: pointer;        
+}
+
+button:hover {
+    background-color: #3e8e41; /* Darker color on hover */
+}
+
 </style>
