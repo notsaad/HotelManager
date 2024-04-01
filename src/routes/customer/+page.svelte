@@ -100,6 +100,10 @@
           alert('Customer was not deleted successfully');
           return;
         }
+        else {
+          alert('Customer was deleted successfully');
+          return;
+        }
     }
 </script>
   
