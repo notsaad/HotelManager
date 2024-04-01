@@ -31,7 +31,7 @@
     <input type="number" bind:value={customerId} placeholder="Customer ID"/>
     <input type="text" bind:value={customerFullName} placeholder="Full Name"/>
     <input type="text" bind:value={customerAddress} placeholder="Address"/>
-    <button on:click={updateCustomerInfo}>Update Info</button>
+    <button on:click={updateCustomerInfo} data-sveltekit-reload>Update Info</button>
 </div>
 
 <div>

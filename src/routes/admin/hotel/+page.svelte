@@ -34,7 +34,7 @@
     <input type="number" bind:value={starRating} placeholder="Star Rating"/>
     <input type="number" bind:value={numRooms} placeholder="Number of Rooms"/>
     <input type="text" bind:value={contactInfo} placeholder="Contact Info"/>
-    <button on:click={updateHotelInfo}>Update Info</button>
+    <button on:click={updateHotelInfo} data-sveltekit-reload>Update Info</button>
 </div>
 
 <div>

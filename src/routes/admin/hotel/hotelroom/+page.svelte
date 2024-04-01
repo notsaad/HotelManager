@@ -39,7 +39,7 @@
     <input type="number" bind:value={price} placeholder="Price"/>
     <input type="text" bind:value={damages} placeholder="Damages"/>
     <input type="text" bind:value={amenities} placeholder="Amenities"/>
-    <button on:click={updateHotelRoomInfo}>Update Info</button>
+    <button on:click={updateHotelRoomInfo} data-sveltekit-reload>Update Info</button>
 </div>
 
 <div>
