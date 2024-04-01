@@ -34,3 +34,45 @@
     <input type="text" bind:value={contactInfo} placeholder="Contact Info"/>
     <button on:click={updateHotelInfo}>Update Info</button>
 </div>
+
+<style>
+    /* General container styling */
+div {
+    text-align: center; /* Centers form elements */
+    margin: 20px auto;  /* Adds margin for visual spacing */
+    padding: 20px;
+    width: 550px;       /* Increased width  */
+    border: 1px solid #ddd; 
+    border-radius: 5px;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1); /* Subtle shadow effect */
+}
+
+/* Style the heading */
+h1 {
+    margin-bottom: 20px; /* Space between heading and inputs */
+}
+
+/* Style the input fields */
+input[type="number"], input[type="text"] {
+    width: calc(100% - 22px); /* Takes up container width, minus padding */
+    margin-bottom: 10px;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+/* Style the button */
+button {
+    background-color: #4CAF50; /* Example button color */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    cursor: pointer;        
+}
+
+button:hover {
+    background-color: #3e8e41; /* Darker color on hover */
+}
+
+</style>
