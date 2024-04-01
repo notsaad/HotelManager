@@ -439,3 +439,49 @@ export function deleteCustomer(customerId: number) {
     const stmnt = db.prepare(sql);
     stmnt.run(customerId);
 }
+
+export function updateCustomer(customerId: number, fullName: string, address: string) {
+
+    const customerExists = 'select exists(select 1 from Customers where customer_id = ?) as found';
+    const existsStmnt = db.prepare(customerExists);
+    const exists = existsStmnt.get(customerId).found;
+
+    if (!exists) {
+        return false;
+    }
+
+    const sql = `UPDATE Customers SET full_name = ?, address = ? WHERE customer_id = ?`;
+    const stmnt = db.prepare(sql);
+    stmnt.run(fullName, address, customerId);
+    return true;
+}
+
+export function updateHotelRoom(hotelAddress: string, roomNumber: number, capacity: number, viewType: string, extendability: boolean, price: number, damages: string, amenities: string) {
+    const roomExists = 'select exists(select 1 from Hotel_Rooms where hotel_address = ? and room_number = ?) as found';
+    const existsStmnt = db.prepare(roomExists);
+    const exists = existsStmnt.get(hotelAddress, roomNumber).found;
+
+    if (!exists) {
+        return false;
+    }
+
+    const sql = `UPDATE Hotel_Rooms SET capacity = ?, view_type = ?, extendability = ?, price = ?, damages = ?, amenities = ? WHERE hotel_address = ? AND room_number = ?`;
+    const stmnt = db.prepare(sql);
+    stmnt.run(capacity, viewType, extendability? 1:0, price, damages, amenities, hotelAddress, roomNumber);
+    return true;
+}
+
+export function updateHotel(hotelAddress: string, centralOfficeAddress: string, area: string, starRating: number, numRooms: number, contactInfo: string) {
+    const hotelExists = 'select exists(select 1 from Hotels where hotel_address = ?) as found';
+    const existsStmnt = db.prepare(hotelExists);
+    const exists = existsStmnt.get(hotelAddress).found;
+
+    if (!exists) {
+        return false;
+    }
+
+    const sql = `UPDATE Hotels SET central_office_address = ?, area = ?, star_rating = ?, num_rooms = ?, contact_info = ? WHERE hotel_address = ?`;
+    const stmnt = db.prepare(sql);
+    stmnt.run(centralOfficeAddress, area, starRating, numRooms, contactInfo, hotelAddress);
+    return true;
+}

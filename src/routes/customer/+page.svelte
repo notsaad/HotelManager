@@ -133,6 +133,10 @@
     </div>
   </div>
 
+  <div>
+    <a href="/admin">Update Entries</a>
+  </div>
+
 <style>
 .dateDiv {
   text-align: center; /* Centers the h2 and the date inputs */ 
