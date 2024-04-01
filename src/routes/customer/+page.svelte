@@ -88,12 +88,26 @@
         customerAdded = true
 
     }
+
+    async function deleteCustomer() {
+        if (customerId === null) {
+          alert('Please enter your customer ID before deleting');
+          return;
+        }
+        console.log(customerId);
+        let res = await fetch(`/api/deleteCustomer?customerId=${customerId}`)
+        if (!res.ok) {
+          alert('Customer was not deleted successfully');
+          return;
+        }
+    }
 </script>
   
 
-  <div class="dateDiv">
+<div class="dateDiv">
     <div class="customerInfo">
       <h1>Enter your information</h1>
+      <button class="delete" on:click={deleteCustomer}>Delete Customer</button>
       <form method="post" on:submit|preventDefault={addCustomer}>
         <input bind:value={customerId} type="number" id="customerId" name="cId" placeholder="Your ID">
         <input bind:value={fullName} type="text" id="fname" name="fname" placeholder="Full Name">
@@ -153,6 +167,10 @@ button:hover {
     cursor: pointer;
     transform: scale(0.975);
     box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.25);
+}
+
+.delete {
+  display: flex;
 }
 
 </style>

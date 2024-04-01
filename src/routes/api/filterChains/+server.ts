@@ -6,7 +6,6 @@ import { json } from "@sveltejs/kit";
 export const GET = (({ url }) => {
     let chainName:string[] =  []
     chainName = url.searchParams.get("chainName")?.toString().replace("%20", " ").split(",") as unknown as string[] ?? [];
-
     
     const query:hotelRoomQueryOptions = {
         chainNames: chainName,

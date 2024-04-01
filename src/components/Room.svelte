@@ -3,6 +3,7 @@
     import hotelRoom from "$lib/assets/hotelRoom.jpg"
     import { myStore } from '../routes/customer/myStore.js';
     import { customerStore, beginDateStore, endDateStore } from '../routes/customer/customerStore.js';
+    import {onMount} from 'svelte';
 
     export let price: number;
     export let view: string;
@@ -16,6 +17,12 @@
 
     const beginDate = $beginDateStore;
     const endDate = $endDateStore;
+    let validBooking;
+
+    onMount(async () => {
+        let validBookingRes = await fetch(`/api/bookRoom?hotelAddress=${hotelAddress.replaceAll(" ", "%20")}&roomNumber=${roomNumber}&startDate=${beginDate}&endDate=${endDate}`);
+        validBooking = validBookingRes.ok;
+    })
 
     async function bookHotel() {
         let url = '/customer/dates/confirm/'
@@ -35,7 +42,20 @@
             },
             body: JSON.stringify(query)
         })
-        // window.location.href = url;
+
+        if (!res.ok) {
+            if (res.status === 409) {
+                alert('Room was not booked successfully, this room was already booked. Please try again.');
+                return;
+            } else if (res.status === 500) {
+                alert('Booking could not be archived, room was booked successfully.');
+            }
+            return;
+        }
+
+
+
+        window.location.href = url;
     }
 </script>
 
@@ -55,7 +75,7 @@
             <div class="right">
                 <h4 class="price">${price}<span class="pernight">/night</span></h4>
                 <h4 class="price">{length} Night Stay</h4>
-                <button on:click={bookHotel}>Book ${length * price}</button>
+                <button disabled='{!validBooking}' on:click={bookHotel}>Book ${length * price}</button>
             </div>
         </div>
     </div>
@@ -160,5 +180,9 @@
 
     button:hover {
         background-color: #0056b3;
+    }
+    button[disabled=disabled], button:disabled {
+        background-color: #ccc;
+        cursor: not-allowed;
     }
 </style>

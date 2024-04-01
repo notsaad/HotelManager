@@ -1,6 +1,6 @@
 import Database from 'better-sqlite3';
 import { HOTEL_DB_PATH } from '$env/static/private';
-import type { Hotel, HotelChain, Employee, HotelRoom, Customer, Reservation, hotelRoomQueryOptions, bookRoomOptions } from './types';
+import type { Hotel, HotelChain, Employee, HotelRoom, Customer, Reservation, hotelRoomQueryOptions } from './types';
 import { Hotel_Chains, Hotels, Employees, Hotel_Rooms, Customers, Reservations } from './sampleData';
 
 const db = new Database(HOTEL_DB_PATH); // { verbose: console.log });
@@ -11,6 +11,9 @@ addEmployeeTable();
 addCustomerTable();
 addHotelRoomTable();
 addReservationTable();
+addBookingArchiveTable();
+indexes();
+triggers();
 
 loadDatabase();
 
@@ -110,8 +113,78 @@ function addReservationTable() {
   stmnt.run();
 }
 
+function addBookingArchiveTable() {
+    const sql = `
+      CREATE TABLE IF NOT EXISTS Booking_History (
+          customer_id INTEGER,
+          hotel_address TEXT,
+          room_number INTEGER,
+          check_in_date DATE,
+          check_out_date DATE
+      );
+      `; /// Keys intentionally left out, as this table should persist all bookings, even if they are no longer valid
+    const stmnt = db.prepare(sql);
+    stmnt.run();
+
+}
+
+function indexes() {
+    const sql = `CREATE INDEX IF NOT EXISTS idx_room_nums ON Hotel_Rooms (hotel_address, room_number);`;
+    const sql2 = `CREATE INDEX IF NOT EXISTS idx_reservations ON Reservations (hotel_address, room_number, check_in_date, check_out_date);`;
+    const sql3 = `CREATE INDEX IF NOT EXISTS idx_hotel ON Hotels (area);`;
+    
+    const stmnt = db.prepare(sql);
+    const stmnt2 = db.prepare(sql2);
+    const stmnt3 = db.prepare(sql3);
+
+    stmnt.run();
+    stmnt2.run();
+    stmnt3.run();
+}
+
+function triggers() {
+    const sql = `CREATE TRIGGER IF NOT EXISTS archive_booking 
+                AFTER INSERT ON Reservations
+                BEGIN
+                    INSERT INTO Booking_History (
+                        customer_id,
+                        hotel_address,
+                        room_number,
+                        check_in_date,
+                        check_out_date
+                    ) 
+                    VALUES (
+                        NEW.customer_id,
+                        NEW.hotel_address,
+                        NEW.room_number,
+                        NEW.check_in_date,
+                        NEW.check_out_date
+                    );
+                END;`
+    const stmnt = db.prepare(sql);
+    stmnt.run();
+
+    const sql2 =    `CREATE TRIGGER IF NOT EXISTS delete_room_reservations
+                    BEFORE DELETE ON Hotel_Rooms 
+                    BEGIN
+                        DELETE FROM Reservations 
+                        WHERE hotel_address = OLD.hotel_address AND room_number = OLD.room_number;
+                    END;`
+    const stmnt2 = db.prepare(sql2);
+    stmnt2.run();
+
+    const sql3 =   `CREATE TRIGGER IF NOT EXISTS delete_customer
+                    BEFORE DELETE ON Customers
+                    BEGIN
+                        DELETE FROM Reservations
+                        WHERE customer_id = OLD.customer_id;
+                    END;`
+    const stmnt3 = db.prepare(sql3);
+    stmnt3.run();
+}
+
 function insertHotelChain(chain: HotelChain) {
-    const insertChainSql = 'INSERT INTO Hotel_Chains (central_office_address, chain_name, num_hotels, email_address, phone_number) VALUES ($coa, $chainName, $numHotels, $email, $phone)';
+    const insertChainSql = 'INSERT INTO Hotel_Chains (central_office_address, chain_name, num_hotels, email_address, phone_number) VALUES ($coa, $chainName, $numHotels, $email, $phone)'
     const insertChainSqlStmnt = db.prepare(insertChainSql);
 
 
@@ -187,7 +260,7 @@ export function insertCustomer(customer: Customer) {
     return 'success';
 }
 
-function insertReservation(reservation: Reservation) {
+export function insertReservation(reservation: Reservation) {
     const insertReservationSql = 'INSERT INTO Reservations (customer_id, hotel_address, room_number, check_in_date, check_out_date) VALUES ($customer, $address, $room, $checkIn, $checkOut)';
     const insertReservationSqlStmnt = db.prepare(insertReservationSql);
 
@@ -196,10 +269,27 @@ function insertReservation(reservation: Reservation) {
     const exists = stmnt.get(reservation.customerID, reservation.hotelAddress, reservation.roomNumber, reservation.checkInDate).found;
 
     if (exists) {
-        return
+        return false;
     };
 
     insertReservationSqlStmnt.run({ customer: reservation.customerID, address: reservation.hotelAddress, room: reservation.roomNumber, checkIn: reservation.checkInDate, checkOut: reservation.checkOutDate });
+    return true;
+}
+
+export function insertBookingArchive(bookingArchive: Reservation) {
+    const insertBookingArchiveSql = 'INSERT INTO Booking_History (customer_id, hotel_address, room_number, check_in_date, check_out_date) VALUES ($customer, $address, $room, $checkIn, $checkOut)';
+    const insertBookingArchiveSqlStmnt = db.prepare(insertBookingArchiveSql);
+
+    const bookingExists = 'select exists(select 1 from Booking_History where customer_id = ? and hotel_address = ? and room_number = ? and check_in_date = ?) as found';
+    const stmnt = db.prepare(bookingExists);
+    const exists = stmnt.get(bookingArchive.customerID, bookingArchive.hotelAddress, bookingArchive.roomNumber, bookingArchive.checkInDate).found;
+
+    if (exists) {
+        return false;
+    };
+
+    insertBookingArchiveSqlStmnt.run({ customer: bookingArchive.customerID, address: bookingArchive.hotelAddress, room: bookingArchive.roomNumber, checkIn: bookingArchive.checkInDate, checkOut: bookingArchive.checkOutDate });
+    return true;
 }
 
 export async function loadDatabase(){
@@ -321,9 +411,31 @@ export function getHotelRooms(hotelAddress: string, min_price: number, max_price
     return rows;
 }
 
-export function bookRoom(options: bookRoomOptions) {
-    const sql = `INSERT INTO Reservations (customer_id, hotel_address, room_number, check_in_date, check_out_date)
-                VALUES (?, ?, ?, ?, ?)`;
+export function getReservationsForRoom(hotelAddress: string, roomNumber: number) {
+    const sql = `SELECT check_in_date, check_out_date FROM Reservations WHERE hotel_address = ? AND room_number = ?`;
     const stmnt = db.prepare(sql);
-    stmnt.run(options.customerID, options.chainAddress, options.roomNumber, options.checkInDate, options.checkOutDate);
+    const rows = stmnt.all(hotelAddress, roomNumber);
+    return rows;
+}
+
+export function getTotalCapacity(hotelAddress: string) {
+    const sql = `SELECT SUM(capacity) as capacity FROM Hotel_Rooms WHERE hotel_address = ?`;
+    const stmnt = db.prepare(sql);
+    const rows = stmnt.get(hotelAddress);
+    return rows;
+}
+
+export function deleteCustomer(customerId: number) {
+
+    const customerExists = 'select exists(select 1 from Customers where customer_id = ?) as found';
+    const existsStmnt = db.prepare(customerExists);
+    const exists = existsStmnt.get(customerId).found;
+
+    if (!exists) {
+        return;
+    }
+
+    const sql = `DELETE FROM Customers WHERE customer_id = ?`;
+    const stmnt = db.prepare(sql);
+    stmnt.run(customerId);
 }

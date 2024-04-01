@@ -47,7 +47,6 @@ export type Reservation = {
     roomNumber: number;
     checkInDate: string; // Maybe change from type string to type Date
     checkOutDate: string; // Maybe change from type string to type Date
-    totalPrice: number;
 }
 
 export type hotelRoomQueryOptions = {

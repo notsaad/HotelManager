@@ -1,6 +1,6 @@
 <script lang="ts">
     import '@fortawesome/fontawesome-free/css/all.css';
-	import { afterUpdate } from 'svelte';
+	import { afterUpdate, onMount } from 'svelte';
 	import { Route } from 'svelte-routing';
     export let numStars: number;
     export let hotelChain: string;
@@ -16,6 +16,13 @@
         hotelUrl = `/hotel${Math.floor(Math.random()*18)}.jpg`.toString();
     })
 
+    let totalCapacity
+    onMount(async () => {
+        let res = await fetch(`/api/totalCapacity?hotelAddress=${hotelAddress}`);
+        let data = await res.json();
+        totalCapacity = data.totalCapacity;
+    });
+
     function bookHotel() {
         let url = window.location.href + `/${hotelAddress}/minPrice=${minPrice}&maxPrice=${maxPrice}&minCapacity=${minCapacity}`; // also pass dates
         window.location.href = url;
@@ -26,7 +33,11 @@
     <div class="hotel-container">
         <div class="hotel-info">
             <h2>{hotelArea}</h2>
-            <h4 class="subtitle">{hotelChain}</h4>
+            <h4 class="subtitle area">{hotelChain}</h4>
+            <div class="capacity area">
+                <i class="fa-solid fa-users area subtitle"></i>
+                <h4 class="subtitle area">{totalCapacity}</h4>
+            </div>
             <div class="stars">
                 {#each Array(numStars) as _, i}
                     <i class="fa-solid fa-star star" style="color: #FFD43B;"></i>
@@ -43,6 +54,7 @@
 <style>
 
     h2 {
+        margin-right: 0;
         margin-bottom: 0;
     }
 
@@ -93,7 +105,7 @@
         margin-top: auto;
     }
     .star {
-        margin: 0 3px; 
+        margin: 10px 3px 0 0; 
     }
 
     button {
@@ -105,14 +117,34 @@
         cursor: pointer;
         z-index: 2;
         position: relative;
-        display: inline;
+        display: flex;
         margin-left: auto;
-        margin-bottom: 0;
+        margin-top: auto;
         font-weight: bold;
         font-size: 20px;
+        
     }
 
     button:hover {
         background-color: #0056b3;
+    }
+
+    .capacity {
+        margin-left: 5px;
+        display: flex;
+        text-align: center;
+        align-content: center;
+        position: absolute;
+        z-index: 2;
+        color: white;
+        min-width: 60px;    
+    }
+
+    .capacity h4 {
+        color: rgb(196, 196, 196);
+    }
+
+    .area {
+        display: inline;
     }
 </style>

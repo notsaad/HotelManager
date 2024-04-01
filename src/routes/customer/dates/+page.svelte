@@ -21,7 +21,7 @@
         if (selectedChains.length > 0) {
             selectedChain = selectedChains.join(",");
         }
-        let res = await fetch(`/api/filterChains?chainName=${selectedChain.replace(" ", "%20")}&area=${area}&starRating=${starCount}&minPrice=${minPrice}&maxPrice=${maxPrice}&minCapacity=${minCapacity}`)
+        let res = await fetch(`/api/filterChains?chainName=${selectedChain.replaceAll(" ", "%20")}&area=${area}&starRating=${starCount}&minPrice=${minPrice}&maxPrice=${maxPrice}&minCapacity=${minCapacity}`)
         let data = await res.json();
         hotelRooms = data;
         offset = 0;
@@ -119,23 +119,6 @@
             <button class="changePageButton nextBtn" on:click={plusOffset}>Next</button>
         </div>
     </div>
-
-    <ul>
-        <li>number of guests</li>
-        <li>hotel chain</li>
-        <li>hotel category</li>
-        <li>price</li>
-        <li>area</li>
-        <li>total number of rooms in hotel</li>
-    </ul>
-
-    <ul class="hotelChainDropdown">
-    </ul>
-
-    <a href="/customer/dates/confirm">
-        Submit
-    </a>
-
 
 <style>
     .hotelGrid {

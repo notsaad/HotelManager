@@ -90,28 +90,28 @@ export const Hotel_Rooms: HotelRoom[] = [
     { hotelAddress: "110 Rue Saint-Catherine, Montreal, QC, Canada", roomNumber: 708, capacity: 2, viewType: "Courtyard View", extendability: false, price: 100, damages: "None", amenities: "TV, Mini Fridge" },
     { hotelAddress: "110 Rue Saint-Catherine, Montreal, QC, Canada", roomNumber: 804, capacity: 2, viewType: "City View", extendability: false, price: 150, damages: "None", amenities: "TV, AC, Free Breakfast" },
 
-    { hotelAddress: "45 Sparks Street, Ottawa, ON, Canada", roomNumber: 101, capacity: 2, viewType: "City View", extendability: true, price: 150, damages: "None", amenities: "TV, Mini Fridge, Gym, Free Breakfast" },
-    { hotelAddress: "45 Sparks Street, Ottawa, ON, Canada", roomNumber: 203, capacity: 2, viewType: "City View", extendability: true, price: 150, damages: "Broken Lampshade", amenities: "AC, Gym, Free Breakfast" },
-    { hotelAddress: "45 Sparks Street, Ottawa, ON, Canada", roomNumber: 302, capacity: 4, viewType: "Parliament View", extendability: false, price: 225, damages: "None", amenities: "TV, AC, Balcony, Free Breakfast" },
+    { hotelAddress: "45 Sparks Street, Ottawa, ON, Canada", roomNumber: 101, capacity: 5, viewType: "City View", extendability: true, price: 150, damages: "None", amenities: "TV, Mini Fridge, Gym, Free Breakfast" },
+    { hotelAddress: "45 Sparks Street, Ottawa, ON, Canada", roomNumber: 203, capacity: 5, viewType: "City View", extendability: true, price: 150, damages: "Broken Lampshade", amenities: "AC, Gym, Free Breakfast" },
+    { hotelAddress: "45 Sparks Street, Ottawa, ON, Canada", roomNumber: 302, capacity: 3, viewType: "Parliament View", extendability: false, price: 225, damages: "None", amenities: "TV, AC, Balcony, Free Breakfast" },
     { hotelAddress: "45 Sparks Street, Ottawa, ON, Canada", roomNumber: 405, capacity: 2, viewType: "City View", extendability: false, price: 125, damages: "None", amenities: "TV, Mini Fridge, Free Breakfast" },
     { hotelAddress: "45 Sparks Street, Ottawa, ON, Canada", roomNumber: 510, capacity: 3, viewType: "City View", extendability: true, price: 175, damages: "Small Carpet Stain", amenities: "TV, AC, Gym, Kitchenette" },
     { hotelAddress: "45 Sparks Street, Ottawa, ON, Canada", roomNumber: 601, capacity: 4, viewType: "Parliament View", extendability: true, price: 250, damages: "None", amenities: "TV, AC, Balcony, Jacuzzi, Free Breakfast" },
     { hotelAddress: "45 Sparks Street, Ottawa, ON, Canada", roomNumber: 708, capacity: 2, viewType: "City View", extendability: false, price: 100, damages: "None", amenities: "TV, Mini Fridge" },
-    { hotelAddress: "45 Sparks Street, Ottawa, ON, Canada", roomNumber: 804, capacity: 2, viewType: "City View", extendability: false, price: 150, damages: "None", amenities: "TV, AC, Free Breakfast" },
+    { hotelAddress: "45 Sparks Street, Ottawa, ON, Canada", roomNumber: 804, capacity: 6, viewType: "City View", extendability: false, price: 150, damages: "None", amenities: "TV, AC, Free Breakfast" },
 
-    { hotelAddress: "800 Robson Street, Vancouver, BC, Canada", roomNumber: 101, capacity: 2, viewType: "City View", extendability: true, price: 175, damages: "None", amenities: "TV, Mini Fridge, Gym, Free Breakfast" },
+    { hotelAddress: "800 Robson Street, Vancouver, BC, Canada", roomNumber: 101, capacity: 1, viewType: "City View", extendability: true, price: 175, damages: "None", amenities: "TV, Mini Fridge, Gym, Free Breakfast" },
     { hotelAddress: "800 Robson Street, Vancouver, BC, Canada", roomNumber: 203, capacity: 2, viewType: "City View", extendability: true, price: 175, damages: "Broken Lampshade", amenities: "AC, Gym, Free Breakfast" },
     { hotelAddress: "800 Robson Street, Vancouver, BC, Canada", roomNumber: 302, capacity: 4, viewType: "Ocean View", extendability: false, price: 250, damages: "None", amenities: "TV, AC, Balcony, Free Breakfast" },
     { hotelAddress: "800 Robson Street, Vancouver, BC, Canada", roomNumber: 405, capacity: 2, viewType: "City View", extendability: false, price: 150, damages: "None", amenities: "TV, Mini Fridge, Free Breakfast" },
-    { hotelAddress: "800 Robson Street, Vancouver, BC, Canada", roomNumber: 510, capacity: 3, viewType: "Ocean View", extendability: true, price: 225, damages: "Small Carpet Stain", amenities: "TV, AC, Gym, Kitchenette" },
+    { hotelAddress: "800 Robson Street, Vancouver, BC, Canada", roomNumber: 510, capacity: 1, viewType: "Ocean View", extendability: true, price: 225, damages: "Small Carpet Stain", amenities: "TV, AC, Gym, Kitchenette" },
     { hotelAddress: "800 Robson Street, Vancouver, BC, Canada", roomNumber: 601, capacity: 4, viewType: "Ocean View", extendability: true, price: 300, damages: "None", amenities: "TV, AC, Balcony, Jacuzzi, Free Breakfast" },
-    { hotelAddress: "800 Robson Street, Vancouver, BC, Canada", roomNumber: 708, capacity: 2, viewType: "City View", extendability: false, price: 125, damages: "None", amenities: "TV, Mini Fridge" },
-    { hotelAddress: "800 Robson Street, Vancouver, BC, Canada", roomNumber: 804, capacity: 2, viewType: "City View", extendability: false, price: 175, damages: "None", amenities: "TV, AC, Free Breakfast" },
+    { hotelAddress: "800 Robson Street, Vancouver, BC, Canada", roomNumber: 708, capacity: 6, viewType: "City View", extendability: false, price: 125, damages: "None", amenities: "TV, Mini Fridge" },
+    { hotelAddress: "800 Robson Street, Vancouver, BC, Canada", roomNumber: 804, capacity: 4, viewType: "City View", extendability: false, price: 175, damages: "None", amenities: "TV, AC, Free Breakfast" },
 
-    { hotelAddress: "167 Portage Avenue, Winnipeg, MB, Canada", roomNumber: 101, capacity: 2, viewType: "City View", extendability: true, price: 125, damages: "None", amenities: "TV, Mini Fridge, Gym, Free Breakfast" },
-    { hotelAddress: "167 Portage Avenue, Winnipeg, MB, Canada", roomNumber: 203, capacity: 2, viewType: "City View", extendability: true, price: 125, damages: "Broken Lampshade", amenities: "AC, Gym, Free Breakfast" },
+    { hotelAddress: "167 Portage Avenue, Winnipeg, MB, Canada", roomNumber: 101, capacity: 3, viewType: "City View", extendability: true, price: 125, damages: "None", amenities: "TV, Mini Fridge, Gym, Free Breakfast" },
+    { hotelAddress: "167 Portage Avenue, Winnipeg, MB, Canada", roomNumber: 203, capacity: 4, viewType: "City View", extendability: true, price: 125, damages: "Broken Lampshade", amenities: "AC, Gym, Free Breakfast" },
     { hotelAddress: "167 Portage Avenue, Winnipeg, MB, Canada", roomNumber: 302, capacity: 4, viewType: "City View", extendability: false, price: 175, damages: "None", amenities: "TV, AC, Free Breakfast" },
-    { hotelAddress: "167 Portage Avenue, Winnipeg, MB, Canada", roomNumber: 405, capacity: 2, viewType: "City View", extendability: false, price: 100, damages: "None", amenities: "TV, Mini Fridge, Free Breakfast" },
+    { hotelAddress: "167 Portage Avenue, Winnipeg, MB, Canada", roomNumber: 405, capacity: 3, viewType: "City View", extendability: false, price: 100, damages: "None", amenities: "TV, Mini Fridge, Free Breakfast" },
     { hotelAddress: "167 Portage Avenue, Winnipeg, MB, Canada", roomNumber: 510, capacity: 3, viewType: "City View", extendability: true, price: 150, damages: "Small Carpet Stain", amenities: "TV, AC, Gym, Kitchenette" },
     { hotelAddress: "167 Portage Avenue, Winnipeg, MB, Canada", roomNumber: 601, capacity: 4, viewType: "City View", extendability: true, price: 200, damages: "None", amenities: "TV, AC, Balcony, Free Breakfast" },
     { hotelAddress: "167 Portage Avenue, Winnipeg, MB, Canada", roomNumber: 708, capacity: 2, viewType: "City View", extendability: false, price: 75, damages: "None", amenities: "TV, Mini Fridge" },
@@ -124,14 +124,14 @@ export const Hotel_Rooms: HotelRoom[] = [
     { hotelAddress: "5811 Spring Garden Road, Halifax, NS, Canada", roomNumber: 510, capacity: 3, viewType: "City View", extendability: true, price: 175, damages: "Small Carpet Stain", amenities: "TV, AC, Gym, Kitchenette" },
     { hotelAddress: "5811 Spring Garden Road, Halifax, NS, Canada", roomNumber: 601, capacity: 4, viewType: "City View", extendability: true, price: 225, damages: "None", amenities: "TV, AC, Free Breakfast" },
     { hotelAddress: "5811 Spring Garden Road, Halifax, NS, Canada", roomNumber: 708, capacity: 2, viewType: "City View", extendability: false, price: 100, damages: "None", amenities: "TV, Mini Fridge" },
-    { hotelAddress: "5811 Spring Garden Road, Halifax, NS, Canada", roomNumber: 804, capacity: 2, viewType: "City View", extendability: false, price: 150, damages: "None", amenities: "TV, AC, Free Breakfast" },
+    { hotelAddress: "5811 Spring Garden Road, Halifax, NS, Canada", roomNumber: 804, capacity: 5, viewType: "City View", extendability: false, price: 150, damages: "None", amenities: "TV, AC, Free Breakfast" },
 
     { hotelAddress: "500 Water Street, St. John's, NL, Canada", roomNumber: 101, capacity: 2, viewType: "City View", extendability: true, price: 150, damages: "None", amenities: "TV, Mini Fridge, Gym, Free Breakfast" },
     { hotelAddress: "500 Water Street, St. John's, NL, Canada", roomNumber: 203, capacity: 2, viewType: "City View", extendability: true, price: 150, damages: "Broken Lampshade", amenities: "AC, Gym, Free Breakfast" },
     { hotelAddress: "500 Water Street, St. John's, NL, Canada", roomNumber: 302, capacity: 4, viewType: "City View", extendability: false, price: 200, damages: "None", amenities: "TV, AC, Free Breakfast" },
     { hotelAddress: "500 Water Street, St. John's, NL, Canada", roomNumber: 405, capacity: 2, viewType: "City View", extendability: false, price: 125, damages: "None", amenities: "TV, Mini Fridge, Free Breakfast" },
     { hotelAddress: "500 Water Street, St. John's, NL, Canada", roomNumber: 510, capacity: 3, viewType: "City View", extendability: true, price: 175, damages: "Small Carpet Stain", amenities: "TV, AC, Gym, Kitchenette" },
-    { hotelAddress: "500 Water Street, St. John's, NL, Canada", roomNumber: 601, capacity: 4, viewType: "City View", extendability: true, price: 225, damages: "None", amenities: "TV, AC, Free Breakfast" },
+    { hotelAddress: "500 Water Street, St. John's, NL, Canada", roomNumber: 601, capacity: 1, viewType: "City View", extendability: true, price: 225, damages: "None", amenities: "TV, AC, Free Breakfast" },
     { hotelAddress: "500 Water Street, St. John's, NL, Canada", roomNumber: 708, capacity: 2, viewType: "City View", extendability: false, price: 100, damages: "None", amenities: "TV, Mini Fridge" },
     { hotelAddress: "500 Water Street, St. John's, NL, Canada", roomNumber: 804, capacity: 2, viewType: "City View", extendability: false, price: 150, damages: "None", amenities: "TV, AC, Free Breakfast" },
 
@@ -141,7 +141,7 @@ export const Hotel_Rooms: HotelRoom[] = [
     { hotelAddress: "150 King Street, Calgary, AB, Canada", roomNumber: 405, capacity: 2, viewType: "City View", extendability: false, price: 125, damages: "None", amenities: "TV, Mini Fridge, Free Breakfast" },
     { hotelAddress: "150 King Street, Calgary, AB, Canada", roomNumber: 510, capacity: 3, viewType: "City View", extendability: true, price: 175, damages: "Small Carpet Stain", amenities: "TV, AC, Gym, Kitchenette" },
     { hotelAddress: "150 King Street, Calgary, AB, Canada", roomNumber: 601, capacity: 4, viewType: "City View", extendability: true, price: 225, damages: "None", amenities: "TV, AC, Free Breakfast" },
-    { hotelAddress: "150 King Street, Calgary, AB, Canada", roomNumber: 708, capacity: 2, viewType: "City View", extendability: false, price: 100, damages: "None", amenities: "TV, Mini Fridge" },
+    { hotelAddress: "150 King Street, Calgary, AB, Canada", roomNumber: 708, capacity: 5, viewType: "City View", extendability: false, price: 100, damages: "None", amenities: "TV, Mini Fridge" },
     { hotelAddress: "150 King Street, Calgary, AB, Canada", roomNumber: 804, capacity: 2, viewType: "City View", extendability: false, price: 150, damages: "None", amenities: "TV, AC, Free Breakfast" },
 
     // Cascade Resorts
@@ -209,20 +209,20 @@ export const Hotel_Rooms: HotelRoom[] = [
     { hotelAddress: "300 Las Vegas Blvd, Las Vegas, NV, USA", roomNumber: 804, capacity: 2, viewType: "City View", extendability: false, price: 150, damages: "None", amenities: "TV, AC, Free Breakfast" },
 
     { hotelAddress: "456 Elm Street, Phoenix, AZ, USA", roomNumber: 101, capacity: 2, viewType: "City View", extendability: true, price: 150, damages: "None", amenities: "TV, Mini Fridge, Gym, Free Breakfast" },
-    { hotelAddress: "456 Elm Street, Phoenix, AZ, USA", roomNumber: 203, capacity: 2, viewType: "City View", extendability: true, price: 150, damages: "Broken Lampshade", amenities: "AC, Gym, Free Breakfast" },
+    { hotelAddress: "456 Elm Street, Phoenix, AZ, USA", roomNumber: 203, capacity: 6, viewType: "City View", extendability: true, price: 150, damages: "Broken Lampshade", amenities: "AC, Gym, Free Breakfast" },
     { hotelAddress: "456 Elm Street, Phoenix, AZ, USA", roomNumber: 302, capacity: 4, viewType: "City View", extendability: false, price: 200, damages: "None", amenities: "TV, AC, Free Breakfast" },
     { hotelAddress: "456 Elm Street, Phoenix, AZ, USA", roomNumber: 405, capacity: 2, viewType: "City View", extendability: false, price: 125, damages: "None", amenities: "TV, Mini Fridge, Free Breakfast" },
     { hotelAddress: "456 Elm Street, Phoenix, AZ, USA", roomNumber: 510, capacity: 3, viewType: "City View", extendability: true, price: 175, damages: "Small Carpet Stain", amenities: "TV, AC, Gym, Kitchenette" },
     { hotelAddress: "456 Elm Street, Phoenix, AZ, USA", roomNumber: 601, capacity: 4, viewType: "City View", extendability: true, price: 225, damages: "None", amenities: "TV, AC, Free Breakfast" },
     { hotelAddress: "456 Elm Street, Phoenix, AZ, USA", roomNumber: 708, capacity: 2, viewType: "City View", extendability: false, price: 100, damages: "None", amenities: "TV, Mini Fridge" },
-    { hotelAddress: "456 Elm Street, Phoenix, AZ, USA", roomNumber: 804, capacity: 2, viewType: "City View", extendability: false, price: 150, damages: "None", amenities: "TV, AC, Free Breakfast" },
+    { hotelAddress: "456 Elm Street, Phoenix, AZ, USA", roomNumber: 804, capacity: 1, viewType: "City View", extendability: false, price: 150, damages: "None", amenities: "TV, AC, Free Breakfast" },
 
     // new hotels
     { hotelAddress: "200 Broadway, New York City, NY, USA", roomNumber: 101, capacity: 2, viewType: "City View", extendability: false, price: 200, damages: "None", amenities: "TV, WiFi, Mini Fridge, AC, Pool" }, 
     { hotelAddress: "200 Broadway, New York City, NY, USA", roomNumber: 105, capacity: 4, viewType: "Park View", extendability: true, price: 275, damages: "None", amenities: "TV, WiFi, Kitchenette, AC, Gym, Free Breakfast" }, 
     { hotelAddress: "200 Broadway, New York City, NY, USA", roomNumber: 202, capacity: 2, viewType: "City View", extendability: false, price: 175, damages: "Scuffed Wall", amenities: "TV, WiFi, Mini Fridge, AC" }, 
     { hotelAddress: "200 Broadway, New York City, NY, USA", roomNumber: 310, capacity: 3, viewType: "City View", extendability: true, price: 225, damages: "None", amenities: "TV, WiFi, AC, Gym" },
-    { hotelAddress: "200 Broadway, New York City, NY, USA", roomNumber: 405, capacity: 2, viewType: "City View", extendability: false, price: 150, damages: "None", amenities: "TV, WiFi, Mini Fridge, AC" },
+    { hotelAddress: "200 Broadway, New York City, NY, USA", roomNumber: 405, capacity: 5, viewType: "City View", extendability: false, price: 150, damages: "None", amenities: "TV, WiFi, Mini Fridge, AC" },
     { hotelAddress: "200 Broadway, New York City, NY, USA", roomNumber: 510, capacity: 3, viewType: "City View", extendability: true, price: 200, damages: "None", amenities: "TV, WiFi, AC, Gym, Kitchenette" },
     { hotelAddress: "200 Broadway, New York City, NY, USA", roomNumber: 605, capacity: 2, viewType: "City View", extendability: false, price: 125, damages: "None", amenities: "TV, WiFi, Mini Fridge, AC" },
     { hotelAddress: "200 Broadway, New York City, NY, USA", roomNumber: 710, capacity: 4, viewType: "City View", extendability: true, price: 250, damages: "None", amenities: "TV, WiFi, AC, Gym, Kitchenette, Pool" },
@@ -234,13 +234,13 @@ export const Hotel_Rooms: HotelRoom[] = [
     { hotelAddress: "350 Front Street West, Toronto, ON, Canada", roomNumber: 305, capacity: 4, viewType: "Lake View", extendability: true, price: 250, damages: "None", amenities: "TV, WiFi, Kitchenette, AC, Pool, Free Breakfast" } ,
     { hotelAddress: "350 Front Street West, Toronto, ON, Canada", roomNumber: 405, capacity: 2, viewType: "City View", extendability: false, price: 150, damages: "None", amenities: "TV, WiFi, Mini Fridge, AC" },
     { hotelAddress: "350 Front Street West, Toronto, ON, Canada", roomNumber: 510, capacity: 3, viewType: "City View", extendability: true, price: 200, damages: "None", amenities: "TV, WiFi, AC, Gym, Kitchenette" },
-    { hotelAddress: "350 Front Street West, Toronto, ON, Canada", roomNumber: 605, capacity: 2, viewType: "City View", extendability: false, price: 125, damages: "None", amenities: "TV, WiFi, Mini Fridge, AC" },
+    { hotelAddress: "350 Front Street West, Toronto, ON, Canada", roomNumber: 605, capacity: 1, viewType: "City View", extendability: false, price: 125, damages: "None", amenities: "TV, WiFi, Mini Fridge, AC" },
     { hotelAddress: "350 Front Street West, Toronto, ON, Canada", roomNumber: 710, capacity: 4, viewType: "City View", extendability: true, price: 250, damages: "None", amenities: "TV, WiFi, AC, Gym, Kitchenette, Pool" },
 
     // Empire Hospitality
     { hotelAddress: "1234 5th Avenue, New York City, NY, USA", roomNumber: 101, capacity: 2, viewType: "City View", extendability: true, price: 150, damages: "None", amenities: "TV, Mini Fridge, Gym, Free Breakfast" },
     { hotelAddress: "1234 5th Avenue, New York City, NY, USA", roomNumber: 203, capacity: 2, viewType: "City View", extendability: true, price: 150, damages: "Broken Lampshade", amenities: "AC, Gym, Free Breakfast" },
-    { hotelAddress: "1234 5th Avenue, New York City, NY, USA", roomNumber: 302, capacity: 4, viewType: "City View", extendability: false, price: 200, damages: "None", amenities: "TV, AC, Free Breakfast" },
+    { hotelAddress: "1234 5th Avenue, New York City, NY, USA", roomNumber: 302, capacity: 8, viewType: "City View", extendability: false, price: 200, damages: "None", amenities: "TV, AC, Free Breakfast" },
     { hotelAddress: "1234 5th Avenue, New York City, NY, USA", roomNumber: 405, capacity: 2, viewType: "City View", extendability: false, price: 125, damages: "None", amenities: "TV, Mini Fridge, Free Breakfast" },
     { hotelAddress: "1234 5th Avenue, New York City, NY, USA", roomNumber: 510, capacity: 3, viewType: "City View", extendability: true, price: 175, damages: "Small Carpet Stain", amenities: "TV, AC, Gym, Kitchenette" },
     { hotelAddress: "1234 5th Avenue, New York City, NY, USA", roomNumber: 601, capacity: 4, viewType: "City View", extendability: true, price: 225, damages: "None", amenities: "TV, AC, Free Breakfast" },
@@ -254,7 +254,7 @@ export const Hotel_Rooms: HotelRoom[] = [
     { hotelAddress: "110 Broadway, Brooklyn, NY, USA", roomNumber: 510, capacity: 3, viewType: "City View", extendability: true, price: 175, damages: "Small Carpet Stain", amenities: "TV, AC, Gym, Kitchenette" },
     { hotelAddress: "110 Broadway, Brooklyn, NY, USA", roomNumber: 601, capacity: 4, viewType: "City View", extendability: true, price: 225, damages: "None", amenities: "TV, AC, Free Breakfast" },
     { hotelAddress: "110 Broadway, Brooklyn, NY, USA", roomNumber: 708, capacity: 2, viewType: "City View", extendability: false, price: 100, damages: "None", amenities: "TV, Mini Fridge" },
-    { hotelAddress: "110 Broadway, Brooklyn, NY, USA", roomNumber: 804, capacity: 2, viewType: "City View", extendability: false, price: 150, damages: "None", amenities: "TV, AC, Free Breakfast" },
+    { hotelAddress: "110 Broadway, Brooklyn, NY, USA", roomNumber: 804, capacity: 1, viewType: "City View", extendability: false, price: 150, damages: "None", amenities: "TV, AC, Free Breakfast" },
 
     { hotelAddress: "777 Park Avenue, New York City, NY, USA", roomNumber: 101, capacity: 2, viewType: "City View", extendability: true, price: 150, damages: "None", amenities: "TV, Mini Fridge, Gym, Free Breakfast" },
     { hotelAddress: "777 Park Avenue, New York City, NY, USA", roomNumber: 203, capacity: 2, viewType: "City View", extendability: true, price: 150, damages: "Broken Lampshade", amenities: "AC, Gym, Free Breakfast" },
@@ -812,6 +812,6 @@ export const Customers: Customer[] = [
 ];
 
 export const Reservations: Reservation[] = [
-    {customerID: 1, hotelAddress: "1234 Queen Street, Toronto, ON, Canada", roomNumber: 101, checkInDate: "2021-07-01", checkOutDate: "2021-07-05", totalPrice: 500},
-    {customerID: 1, hotelAddress: "1234 Queen Street, Toronto, ON, Canada", roomNumber: 101, checkInDate: "2022-08-01", checkOutDate: "2022-07-05", totalPrice: 500},
+    {customerID: 1, hotelAddress: "1234 Queen Street, Toronto, ON, Canada", roomNumber: 101, checkInDate: "2021-07-01", checkOutDate: "2021-07-05"},
+    {customerID: 1, hotelAddress: "1234 Queen Street, Toronto, ON, Canada", roomNumber: 101, checkInDate: "2022-08-01", checkOutDate: "2022-07-05"},
 ];
