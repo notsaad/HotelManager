@@ -27,6 +27,12 @@ npm run dev -- --open
 
 ## Building
 
+Ensure .env file exists in the base directory. Add the following if it doesn't
+
+```bash
+HOTEL_DB_PATH=./data/hotels.db
+```
+
 To create a production version of your app:
 
 ```bash
