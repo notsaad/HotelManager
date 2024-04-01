@@ -137,9 +137,6 @@
     </div>
   </div>
 
-  <div>
-    <a href="/admin">Update Entries</a>
-  </div>
 
 <style>
 .dateDiv {

@@ -119,8 +119,6 @@
             <button>Submit</button>
         </form>
     </div>
-    <div class="hotelBooking">
-        <h2>Hotel Booking</h2>
         <div class="dateDiv">
             <div class="checkinDiv">
                 <h3>Check-In Date:</h3>
@@ -137,9 +135,12 @@
                 <p>Must select dates to proceed</p>
                 {/if}
             </div>
-        </div>
+    </div>
+    <div>
+        <a href="/admin">Update Entries</a>
     </div>
 </div>
+
 
     
     <style>
@@ -202,6 +203,24 @@ button:hover {
 
 .delete {
     display: flex;
+}
+
+a {
+  display: block;         /* Make the link a block element for better control */
+  width: 200px;          /* Set a width for your button-like look */
+  margin: 20px auto;      /* Center horizontally and add top/bottom margin */
+  padding: 10px 20px;     /* Add padding for spacing around text */
+  background-color: #4CAF50;  /* Example button color */
+  color: white;              
+  border: none;              /* Remove the default link border */
+  border-radius: 5px;        /* Rounded corners */
+  text-decoration: none;     /* Remove default underline */
+  cursor: pointer;           /* Change cursor on hover */
+  text-align: center;        /* Center the text within the button */
+}
+
+a:hover {
+  background-color: #3e8e41; /* Darker color on hover */
 }
 
     </style>
