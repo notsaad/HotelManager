@@ -16,6 +16,10 @@
             alert('Customer info was not updated successfully');
             return;
         }
+        else{
+            alert('Customer info was successfully updated');
+            return;
+        }
     }
 
 </script>
